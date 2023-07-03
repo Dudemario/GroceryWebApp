@@ -8,8 +8,8 @@ function Home() {
     <div className="home" style={{ backgroundImage: `url(${BannerImage})` }}>
       <div className="headerContainer" >
         <h1> Vincent Sun</h1>
-        <p> OPTIMAL GROCERY SHOPPING</p>
-        <Link to="/shoppingList">
+        <p> Cum</p>
+        <Link to="/shoppingList"> 
           <button>
             Shopping List
           </button>
