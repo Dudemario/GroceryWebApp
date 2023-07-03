@@ -25,7 +25,8 @@
     align-items: center;
     flex-direction: column;
     font-family: "Nunito", sans-serif;
-    padding-top: 38px;
+    padding-top: 20px;
+    margin-left: -500px;
     z-index: 1;
     
   }
