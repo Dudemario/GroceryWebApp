@@ -27,7 +27,7 @@ function Navbar() {
       </div>
 
       <div className="searchbar">
-         <SearchBar placeholder="Search Products"/>
+         <SearchBar placeholder="Search Products" data={BookData}/>
       </div>
 
       <div className="rightSide"> 

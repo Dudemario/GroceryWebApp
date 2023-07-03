@@ -12,7 +12,10 @@ function SearchBar({placeholder, data}) {
         </div>
       </div>
       <div className="dataResult">
-
+        {data.map((value, key) => {
+          return 
+            <div> {value.title} </div>
+        })}
       </div>
     </div>
   )
