@@ -18,32 +18,37 @@ const puppeteer = require("puppeteer");
 
   let items = [];
 
+  //loop through all products
   for (const producthandle of productsHandles) {
     let title = "Null";
     let price = "Null";
     let img = "Null";
 
     try {
-      title = await page.evaluate(
+        //get title of single product
+        title = await page.evaluate(
         (el) => el.querySelector("h2 > a > span").textContent,
         producthandle
       );
     } catch (error) {}
 
     try {
-      price = await page.evaluate(
+        //get price of single product
+        price = await page.evaluate(
         (el) => el.querySelector(".a-price > .a-offscreen").textContent,
         producthandle
       );
     } catch (error) {}
 
     try {
-      img = await page.evaluate(
+        //get img of single product
+        img = await page.evaluate(
         (el) => el.querySelector(".s-image").getAttribute("src"),
         producthandle
       );
     } catch (error) {}
 
+    //put product into list
     if (title !== "Null") {
       items.push({ title, price, img });
     }
