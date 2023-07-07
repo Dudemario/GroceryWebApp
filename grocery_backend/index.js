@@ -1,3 +1,4 @@
+const fs = require("fs");
 const puppeteer = require("puppeteer");
 
 (async () => {
@@ -15,8 +16,6 @@ const puppeteer = require("puppeteer");
   const productsHandles = await page.$$(
     "div.s-main-slot.s-result-list.s-search-results.sg-row > .s-result-item"
   );
-
-  let items = [];
 
   //loop through all products
   for (const producthandle of productsHandles) {
@@ -50,11 +49,15 @@ const puppeteer = require("puppeteer");
 
     //put product into list
     if (title !== "Null") {
-      items.push({ title, price, img });
+      fs.appendFile(
+        "products.csv",
+        `${title.replace(/,/g, ".")},${price},${img}\n`,
+        function (err) {
+          if (err) throw err;
+        }
+      );
     }
   }
 
-  console.log(items);
-
-  //await browser.close();
+  await browser.close();
 })();
