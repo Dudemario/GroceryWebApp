@@ -24,28 +24,28 @@ const puppeteer = require("puppeteer");
     let img = "Null";
 
     try {
-        //get title of single product
-        title = await page.evaluate(
+      //get title of single product
+      title = await page.evaluate(
         (el) => el.querySelector("h2 > a > span").textContent,
         producthandle
       );
-    } catch (error) {}
+    } catch (error) { }
 
     try {
-        //get price of single product
-        price = await page.evaluate(
+      //get price of single product
+      price = await page.evaluate(
         (el) => el.querySelector(".a-price > .a-offscreen").textContent,
         producthandle
       );
-    } catch (error) {}
+    } catch (error) { }
 
     try {
-        //get img of single product
-        img = await page.evaluate(
+      //get img of single product
+      img = await page.evaluate(
         (el) => el.querySelector(".s-image").getAttribute("src"),
         producthandle
       );
-    } catch (error) {}
+    } catch (error) { }
 
     //put product into list
     if (title !== "Null") {
