@@ -7,6 +7,10 @@
     display: flex;
 }
 
+.optionText {
+    margin-right: 20px;
+}
+
 .item {
     display: flex;
     align-items: center;
