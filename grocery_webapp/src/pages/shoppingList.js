@@ -1,13 +1,39 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { ShopList } from '../ListItems'
 import "../styles/ShopList.css";
 
 function ShoppingList() {
   const [sortOption, setSortOption] = useState("alphabetical");
   const [sortList, setSortList] = useState(ShopList);
+  const [groupStore, setGroupStore] = useState(false);
+  // const [originalState, setOriginalState] = useState(ShopList);
+
+  useEffect(() => {
+    setSortList([...ShopList].sort((a, b) => a.name.localeCompare(b.name)));
+  }, []);
+
+  const handleGroup = (event) => {
+    setGroupStore(!groupStore);
+
+    setSortList(group(sortList));
+
+    // const { value } = event.target;
+
+    // if(value === 'groupByStore') {
+    //   setGroupStore(!groupStore);
+    // }
+
+    // if(groupStore) {
+    //   setSortList(group(sortList));
+    //   return;
+    // } else {
+    //   setSortList(sortList);
+    // }
+  }
 
   const handleSortChange = (event) => {
     const { value } = event.target;
+
     setSortOption(value);
 
     switch (value) {
@@ -30,7 +56,33 @@ function ShoppingList() {
         setSortList(ShopList);
         break;
     }
+
+    // if(groupStore) {
+    //   setSortList(group(sortList));
+    //   return;
+    // } else {
+    //   setSortList(originalState);
+    // }
   };
+
+  const group = (list) => {
+    const itemGroup = {};
+    const result = [];
+
+    list.forEach((item) => {
+      const store = item.store;
+      if(!itemGroup[store]) {
+        itemGroup[store] = [];
+      }
+      itemGroup[store].push(item)
+    });
+
+    for(const store in itemGroup) {
+      result.push(...itemGroup[store]);
+    }
+
+    return result;
+  }
 
   return (
     <div className="shoppingList">
@@ -41,7 +93,8 @@ function ShoppingList() {
         <input type='radio' value="priceHigh" checked={sortOption === "priceHigh"} onChange={handleSortChange}/> <p className='optionText'>price (highest)</p>
         <input type='radio' value="distLow" checked={sortOption === "distLow"} onChange={handleSortChange}/> <p className='optionText'>distance (nearest)</p>
         <input type='radio' value="distHigh" checked={sortOption === "distHigh"} onChange={handleSortChange}/> <p className='optionText'>distance (furthest)</p>
-        <input type='checkbox'/> <p>group by store</p>
+        {/* <input type='checkbox' value="groupByStore" checked={groupStore} onChange={handleGroup}/> <p>group by store</p> */}
+        <button onClick={handleGroup}>group by store</button>
       </div>
       <h1>Your Shopping List:</h1>
       {sortList.map((item, index) => (
