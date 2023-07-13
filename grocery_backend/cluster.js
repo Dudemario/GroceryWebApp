@@ -21,6 +21,6 @@ const urls = [];
   }
   // many more pages
 
-  //await cluster.idle();
-  //await cluster.close();
+  await cluster.idle();
+  await cluster.close();
 })();
