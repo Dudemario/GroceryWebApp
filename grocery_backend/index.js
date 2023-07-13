@@ -1,20 +1,26 @@
 const fs = require("fs");
-const puppeteer = require("puppeteer");
+const puppeteer = require('puppeteer-extra');
+
+// add stealth plugin and use defaults (all evasion techniques)
+const StealthPlugin = require('puppeteer-extra-plugin-stealth');
+puppeteer.use(StealthPlugin());
 
 (async () => {
   const browser = await puppeteer.launch({
     headless: false,
     defaultViewport: false,
     userDataDir: "./tmp",
+    executablePath: "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome", 
+    userDataDir: "/Users/vincent/Library/Application Support/Google/Chrome/Profile 1"
   });
-
   const page = await browser.newPage();
+  await page.setDefaultNavigationTimeout(0);
   await page.goto(
-    "https://www.amazon.com/s?rh=n%3A16225007011&fs=true&ref=lp_16225007011_sar"
+    "https://www.walmart.ca/search?q=banana&c=10019"
   );
-
+  //await page.setGeolocation({ latitude: 43.4669, longitude: -79.6858 });
   const productsHandles = await page.$$(
-    "div.s-main-slot.s-result-list.s-search-results.sg-row > .s-result-item"
+    "div.css-qsotkn.e5icx9n1"// > .css-1d0izcz.e1m8uw9118
   );
 
   //loop through all products
@@ -26,7 +32,7 @@ const puppeteer = require("puppeteer");
     try {
       //get title of single product
       title = await page.evaluate(
-        (el) => el.querySelector("h2 > a > span").textContent,
+        (el) => el.querySelector("div > span > div > p").textContent,
         producthandle
       );
     } catch (error) { }
@@ -34,7 +40,7 @@ const puppeteer = require("puppeteer");
     try {
       //get price of single product
       price = await page.evaluate(
-        (el) => el.querySelector(".a-price > .a-offscreen").textContent,
+        (el) => el.querySelector("div > span > div > p").textContent,
         producthandle
       );
     } catch (error) { }
@@ -42,8 +48,10 @@ const puppeteer = require("puppeteer");
     try {
       //get img of single product
       img = await page.evaluate(
-        (el) => el.querySelector(".s-image").getAttribute("src"),
+        (el) => el.querySelector("div > span > div > p").textContent,
         producthandle
+        //(el) => el.querySelector(".s-image").getAttribute("src"),
+        //producthandle
       );
     } catch (error) { }
 
