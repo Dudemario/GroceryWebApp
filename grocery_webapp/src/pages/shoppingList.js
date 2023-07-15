@@ -88,6 +88,7 @@ function ShoppingList() {
     const updated = [...sortList];
     updated.splice(index, 1);
     setSortList(updated);
+    console.log(sortList.length);
   }
 
   return (
@@ -115,6 +116,7 @@ function ShoppingList() {
           </div>
         </div>
       ))}
+      {sortList.length === 0 ? <h2>Your Shopping List is Empty!</h2> : <h2>Total: xx</h2>}
     </div>
   )
 }
