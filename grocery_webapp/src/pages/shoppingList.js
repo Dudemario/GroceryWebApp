@@ -6,6 +6,7 @@ function ShoppingList() {
   const [sortOption, setSortOption] = useState("alphabetical");
   const [sortList, setSortList] = useState(ShopList);
   const [groupStore, setGroupStore] = useState(false);
+  const totalCost = sortList.reduce((a, v) => a + v.prix, 0)
   // const [originalState, setOriginalState] = useState(ShopList);
 
   useEffect(() => {
@@ -116,7 +117,7 @@ function ShoppingList() {
           </div>
         </div>
       ))}
-      {sortList.length === 0 ? <h2>Your Shopping List is Empty!</h2> : <h2>Total: xx</h2>}
+      {sortList.length === 0 ? <h2>Your Shopping List is Empty!</h2> : <h2>Total Cost: ${sortList.reduce((a, v) => a + v.price, 0).toFixed(2)}</h2>}
     </div>
   )
 }
