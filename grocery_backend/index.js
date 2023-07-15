@@ -10,8 +10,8 @@ puppeteer.use(StealthPlugin());
     headless: false,
     defaultViewport: false,
     userDataDir: "./tmp",
-    executablePath: "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome", 
-    userDataDir: "/Users/vincent/Library/Application Support/Google/Chrome/Profile 1"
+    executablePath: "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+    userDataDir: "/Users/vincent/Library/Application Support/Google/Chrome/Profile 2"
   });
   const page = await browser.newPage();
   await page.setDefaultNavigationTimeout(0);
@@ -20,7 +20,7 @@ puppeteer.use(StealthPlugin());
   );
   //await page.setGeolocation({ latitude: 43.4669, longitude: -79.6858 });
   const productsHandles = await page.$$(
-    "div.css-qsotkn.e5icx9n1"// > .css-1d0izcz.e1m8uw9118
+    "div.css-qsotkn.e5icx9n1 > div > .css-1d0izcz.e1m8uw9118"
   );
 
   //loop through all products
@@ -40,32 +40,30 @@ puppeteer.use(StealthPlugin());
     try {
       //get price of single product
       price = await page.evaluate(
-        (el) => el.querySelector("div > span > div > p").textContent,
+        (el) => el.querySelector("div > span > span").textContent,
         producthandle
       );
     } catch (error) { }
 
-    try {
-      //get img of single product
-      img = await page.evaluate(
-        (el) => el.querySelector("div > span > div > p").textContent,
-        producthandle
-        //(el) => el.querySelector(".s-image").getAttribute("src"),
-        //producthandle
-      );
-    } catch (error) { }
+  try {
+    //get img of single product
+    img = await page.evaluate(
+      (el) => el.querySelector(".css-19q6667.e175iya62").getAttribute("src"),
+      producthandle
+    );
+  } catch (error) { }
 
-    //put product into list
-    if (title !== "Null") {
-      fs.appendFile(
-        "products.csv",
-        `${title.replace(/,/g, ".")},${price},${img}\n`,
-        function (err) {
-          if (err) throw err;
-        }
-      );
-    }
+  //put product into list
+  if (title !== "Null" && !price.includes("for")) {
+    fs.appendFile(
+      "products.csv",
+      `${title.replace(/,/g, ".")},${price},${img}\n`,
+      function (err) {
+        if (err) throw err;
+      }
+    );
   }
+}
 
   await browser.close();
-})();
+}) ();
