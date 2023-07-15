@@ -1,7 +1,3 @@
-.paragraph {
-  text-indent: 50px;
-}
-
 .about {
   width: 100%;
   height: 90vh;
@@ -13,7 +9,7 @@
 .aboutTop {
   width: 100%;
   height: 45%;
-  background-position: center;
+  background-position: 100% 0%;
   background-repeat: no-repeat;
   background-size: cover; 
 }
@@ -28,6 +24,7 @@
 
 .aboutBottom p {
   width: 1200px;
+  text-indent: 50px;
 }
 
 .about .aboutBottom h1 {

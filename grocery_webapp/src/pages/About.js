@@ -10,7 +10,7 @@ function About() {
       </div>
       <div className="aboutBottom"> 
         <h1>ABOUT THE WEBSITE</h1>
-        <p className="paragraph"> At Optimal Shopper, our mission is to revolutionize the way you shop for groceries. 
+        <p> At Optimal Shopper, our mission is to revolutionize the way you shop for groceries. 
           We understand the importance of finding the best deals without compromising on quality, 
           and that's why we have developed a cutting-edge platform that combines the power of price and location filters. 
           With Optimal Shopper, you can effortlessly navigate through a vast array of grocery options, 
