@@ -8,8 +8,8 @@
 
 .aboutTop {
   width: 100%;
-  height: 45%;
-  background-position: 100% 0%;
+  height: 50%;
+  background-position: 0px -272px;
   background-repeat: no-repeat;
   background-size: cover; 
 }
@@ -17,7 +17,7 @@
 .aboutBottom {
   display: flex;
   flex-direction: column;
-  height: 55%; 
+  height: 50%; 
   align-items: center;
   margin-top: 50px; 
 }

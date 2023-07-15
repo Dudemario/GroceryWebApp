@@ -1,11 +1,11 @@
 import React from 'react'
-import shoppingCartImage from "../assets/shoppingCart.jpg";
+import background from "../assets/aboutUsBackground2.png";
 import "../styles/About.css";
 
 function About() {
   return (
     <div className="about">
-      <div className="aboutTop" style={{ backgroundImage: `url(${shoppingCartImage})` }}> 
+      <div className="aboutTop" style={{ backgroundImage: `url(${background})` }}> 
       
       </div>
       <div className="aboutBottom"> 
