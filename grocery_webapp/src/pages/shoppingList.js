@@ -6,7 +6,6 @@ function ShoppingList() {
   const [sortOption, setSortOption] = useState("alphabetical");
   const [sortList, setSortList] = useState(ShopList);
   const [groupStore, setGroupStore] = useState(false);
-  const totalCost = sortList.reduce((a, v) => a + v.prix, 0)
   // const [originalState, setOriginalState] = useState(ShopList);
 
   useEffect(() => {
