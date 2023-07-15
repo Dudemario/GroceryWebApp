@@ -84,6 +84,12 @@ function ShoppingList() {
     return result;
   }
 
+  const removeItem = (index) => {
+    const updated = [...sortList];
+    updated.splice(index, 1);
+    setSortList(updated);
+  }
+
   return (
     <div className="shoppingList">
       <div className='options'>
@@ -103,6 +109,9 @@ function ShoppingList() {
           <div className='itemInfo'>
             <h3>{item.name}</h3>
             <p>Store: {item.store}, Price: ${item.price}, Distance: {item.distance}km away</p>
+          </div>
+          <div className='remove'>
+            <button onClick={() => removeItem(index)}>remove</button>
           </div>
         </div>
       ))}
