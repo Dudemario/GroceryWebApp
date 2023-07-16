@@ -55,6 +55,9 @@ puppeteer.use(StealthPlugin());
 
   //put product into list
   if (title !== "Null" && !price.includes("for")) {
+    if(price.includes("¢")){
+      price = "$0." + price.slice(0, 2)
+    }
     fs.appendFile(
       "products.csv",
       `${title.replace(/,/g, ".")},${price},${img}\n`,
