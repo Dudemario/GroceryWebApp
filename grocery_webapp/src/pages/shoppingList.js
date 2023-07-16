@@ -1,3 +1,13 @@
+/* To Do:
+ *  - click again to confirm delete + success message when removing
+ *  - make it not look so ugly!!!!! 
+ *        if have time: 
+ *  - add undo button for removing items
+ *  - maybe block out group checkbox if sorting by distance (because it wouldn't
+ *      do anything unless planning on displaying items from many of the same store
+ *      franchise at different locations)
+*/
+
 import React, { useEffect, useState } from 'react'
 import { ShopList } from '../ListItems'
 import "../styles/ShopList.css";
@@ -6,36 +16,33 @@ function ShoppingList() {
   const [sortOption, setSortOption] = useState("alphabetical");
   const [sortList, setSortList] = useState(ShopList);
   const [groupStore, setGroupStore] = useState(false);
-  // const [originalState, setOriginalState] = useState(ShopList);
 
+  /* Sets sort to default (alphabeical) on page load. */
   useEffect(() => {
     setSortList([...ShopList].sort((a, b) => a.name.localeCompare(b.name)));
   }, []);
 
-  const handleGroup = (event) => {
-    setGroupStore(!groupStore);
-
-    setSortList(group(sortList));
-
-    // const { value } = event.target;
-
-    // if(value === 'groupByStore') {
-    //   setGroupStore(!groupStore);
-    // }
-
-    // if(groupStore) {
-    //   setSortList(group(sortList));
-    //   return;
-    // } else {
-    //   setSortList(sortList);
-    // }
-  }
-
+  /* Changes the sorting option currently selected if it's not called by the group checkbox
+   *  then gets correct sorting method.
+   */
   const handleSortChange = (event) => {
-    const { value } = event.target;
+    let { value } = event.target;
+    
+    if(value === "groupByStore") {
+      value = sortOption;
+    } else {
+      setSortOption(value);
+    }
 
-    setSortOption(value);
+    if(groupStore) {
+      sortGroup(value);
+    } else {
+      sortReg(value);
+    }
+  };
 
+  /* Sorts things. */
+  const sortReg = (value) => {
     switch (value) {
       case 'alphabetical':
         setSortList([...ShopList].sort((a, b) => a.name.localeCompare(b.name)));
@@ -56,15 +63,48 @@ function ShoppingList() {
         setSortList(ShopList);
         break;
     }
+  }
 
-    // if(groupStore) {
-    //   setSortList(group(sortList));
-    //   return;
-    // } else {
-    //   setSortList(originalState);
-    // }
-  };
+  /* Sorts things but with a twist (groups). */
+  const sortGroup = (value) => {
+    switch (value) {
+      case 'alphabetical':
+        setSortList(group([...ShopList].sort((a, b) => a.name.localeCompare(b.name))));
+        break;
+      case 'priceLow':
+        setSortList(group([...ShopList].sort((a, b) => a.price - b.price)));
+        break;
+      case 'priceHigh':
+        setSortList(group([...ShopList].sort((a, b) => b.price - a.price)));
+        break;
+      case 'distLow':
+        setSortList(group([...ShopList].sort((a, b) => a.distance - b.distance)));
+        break;
+      case 'distHigh':
+        setSortList(group([...ShopList].sort((a, b) => b.distance - a.distance)));
+        break;
+      default:
+        setSortList(group(ShopList));
+        break;
+    }
+  }
 
+  /* Called when group checkbox is updated. Sets groupStore option to opposite. Then,
+   *  if groupStore is false, sorts the list by group, otherwise defaulting back to
+   *  how it was sorted before (this is required because the state of groupStore isn't)
+   *  actually updated until after the function is completed).
+  */
+  const handleGroup = (event) => {
+    setGroupStore(!groupStore);
+
+    if(!groupStore) {
+      setSortList(group(sortList));
+    } else {
+      sortReg(sortOption);
+    }
+  }
+
+  /* Groups the items if they have same "store" and returns the new list. */
   const group = (list) => {
     const itemGroup = {};
     const result = [];
@@ -84,11 +124,11 @@ function ShoppingList() {
     return result;
   }
 
+  /* Removes an item at a specified index from the list. */
   const removeItem = (index) => {
     const updated = [...sortList];
     updated.splice(index, 1);
     setSortList(updated);
-    console.log(sortList.length);
   }
 
   return (
@@ -100,8 +140,7 @@ function ShoppingList() {
         <input type='radio' value="priceHigh" checked={sortOption === "priceHigh"} onChange={handleSortChange}/> <p className='optionText'>price (highest)</p>
         <input type='radio' value="distLow" checked={sortOption === "distLow"} onChange={handleSortChange}/> <p className='optionText'>distance (nearest)</p>
         <input type='radio' value="distHigh" checked={sortOption === "distHigh"} onChange={handleSortChange}/> <p className='optionText'>distance (furthest)</p>
-        {/* <input type='checkbox' value="groupByStore" checked={groupStore} onChange={handleGroup}/> <p>group by store</p> */}
-        <button onClick={handleGroup}>group by store</button>
+        <input type='checkbox' value="groupByStore" checked={groupStore} onChange={handleGroup}/> <p>group by store</p>
       </div>
       <h1>Your Shopping List:</h1>
       {sortList.map((item, index) => (
@@ -116,6 +155,7 @@ function ShoppingList() {
           </div>
         </div>
       ))}
+      {/* If sortList is empty, display message, otherwise display total cost. */}
       {sortList.length === 0 ? <h2>Your Shopping List is Empty!</h2> : <h2>Total Cost: ${sortList.reduce((a, v) => a + v.price, 0).toFixed(2)}</h2>}
     </div>
   )
