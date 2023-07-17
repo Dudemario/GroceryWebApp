@@ -155,9 +155,12 @@ function ShoppingList() {
         <input type='radio' value="distHigh" checked={sortOption === "distHigh"} onChange={handleSortChange}/> <p className='optionText'>distance (furthest)</p>
         <input type='checkbox' value="groupByStore" checked={groupStore} onChange={handleGroup}/> <p>group by store</p>
       </div>
-      <h1>Your Shopping List:</h1>
+      <div className='header'>
+        <h1>Your Shopping List:</h1>
+      </div>
       {sortList.map((item, index) => (
         <div key={index} className='item'>
+          <img className='divideTop' src='https://i.ytimg.com/vi/XIMLoLxmTDw/hqdefault.jpg'/>
           <img src={item.img} alt={item.name} className='itemImage'/>
           <div className='itemInfo'>
             <h3>{item.name}</h3>
@@ -167,6 +170,7 @@ function ShoppingList() {
             <button className='rButton' onClick={() => removeItem(index)}><img className='removeX' src='https://cdn-icons-png.flaticon.com/512/109/109602.png' alt='remove from list'/></button>
             <p>{removeText}</p>
           </div>
+          <img className='divideBot' src='https://i.ytimg.com/vi/XIMLoLxmTDw/hqdefault.jpg'/>
         </div>
       ))}
       {/* If sortList is empty, display message, otherwise display total cost. */}
