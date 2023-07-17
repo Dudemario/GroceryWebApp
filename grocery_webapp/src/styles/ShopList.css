@@ -13,6 +13,21 @@
 
 .header {
     display: flex;
+    margin-bottom: 20px;
+}
+
+.confirm {
+    margin-left: auto;
+    margin-top: 30px;
+}
+
+.undo {
+    margin-left: auto;
+    margin-top: 24px;
+    margin-right: 50px;
+    width: auto;
+    height: 24px;
+    background-color: transparent;
 }
 
 .item {
@@ -61,7 +76,7 @@
 .divideBot {
     position: absolute;
     margin-top: 175px;
-    width: 96vw;
+    width: 98%;
     height: 2px;
     opacity: 30%;
 }
@@ -69,7 +84,7 @@
 .divideTop {
     position: absolute;
     margin-bottom: 175px;
-    width: 96vw;
+    width: 98%;
     height: 2px;
     opacity: 30%;
 }

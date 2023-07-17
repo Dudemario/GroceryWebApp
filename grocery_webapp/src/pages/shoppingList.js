@@ -18,6 +18,7 @@ function ShoppingList() {
   const [groupStore, setGroupStore] = useState(false);
   const [removeText, setRemoveText] = useState("Remove From List");
   const [remove, setRemove] = useState(false);
+  const [confirm, setConfirm] = useState(false);
 
   /* Sets sort to default (alphabeical) on page load. */
   useEffect(() => {
@@ -134,14 +135,15 @@ function ShoppingList() {
       setSortList(updated);
       setRemove(false);
       setRemoveText("Remove From List")
+      setConfirm(true);
+      setTimeout(() => {
+        setConfirm(false);
+      }, 3000);
     } else {
-      confirmRemove();
+      setRemoveText("Click To Confirm");
+      setRemove(true);
+      setConfirm(false);
     }
-  }
-
-  const confirmRemove = () => {
-    setRemoveText("Click To Confirm");
-    setRemove(true);
   }
 
   return (
@@ -157,6 +159,8 @@ function ShoppingList() {
       </div>
       <div className='header'>
         <h1>Your Shopping List:</h1>
+        {confirm ? <p className='confirm'>Item Removed Successfully</p> : <p></p>}
+        <button className='undo'>Undo Remove</button>
       </div>
       {sortList.map((item, index) => (
         <div key={index} className='item'>
