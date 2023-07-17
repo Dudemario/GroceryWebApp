@@ -16,6 +16,8 @@ function ShoppingList() {
   const [sortOption, setSortOption] = useState("alphabetical");
   const [sortList, setSortList] = useState(ShopList);
   const [groupStore, setGroupStore] = useState(false);
+  const [removeText, setRemoveText] = useState("Remove From List");
+  const [remove, setRemove] = useState(false);
 
   /* Sets sort to default (alphabeical) on page load. */
   useEffect(() => {
@@ -93,7 +95,7 @@ function ShoppingList() {
    *  if groupStore is false, sorts the list by group, otherwise defaulting back to
    *  how it was sorted before (this is required because the state of groupStore isn't)
    *  actually updated until after the function is completed).
-  */
+   */
   const handleGroup = (event) => {
     setGroupStore(!groupStore);
 
@@ -126,9 +128,20 @@ function ShoppingList() {
 
   /* Removes an item at a specified index from the list. */
   const removeItem = (index) => {
-    const updated = [...sortList];
-    updated.splice(index, 1);
-    setSortList(updated);
+    if(remove) {
+      const updated = [...sortList];
+      updated.splice(index, 1);
+      setSortList(updated);
+      setRemove(false);
+      setRemoveText("Remove From List")
+    } else {
+      confirmRemove();
+    }
+  }
+
+  const confirmRemove = () => {
+    setRemoveText("Click To Confirm");
+    setRemove(true);
   }
 
   return (
@@ -151,7 +164,8 @@ function ShoppingList() {
             <p>Store: {item.store}, Price: ${item.price}, Distance: {item.distance}km away</p>
           </div>
           <div className='remove'>
-            <button onClick={() => removeItem(index)}>remove</button>
+            <button className='rButton' onClick={() => removeItem(index)}><img className='removeX' src='https://cdn-icons-png.flaticon.com/512/109/109602.png' alt='remove from list'/></button>
+            <p>{removeText}</p>
           </div>
         </div>
       ))}
