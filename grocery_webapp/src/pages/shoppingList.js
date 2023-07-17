@@ -1,8 +1,6 @@
 /* To Do:
- *  - click again to confirm delete + success message when removing
  *  - make it not look so ugly!!!!! 
  *        if have time: 
- *  - add undo button for removing items
  *  - maybe block out group checkbox if sorting by distance (because it wouldn't
  *      do anything unless planning on displaying items from many of the same store
  *      franchise at different locations)
@@ -13,17 +11,27 @@ import { ShopList } from '../ListItems'
 import "../styles/ShopList.css";
 
 function ShoppingList() {
-  const [sortOption, setSortOption] = useState("alphabetical");
-  const [sortList, setSortList] = useState(ShopList);
-  const [groupStore, setGroupStore] = useState(false);
-  const [removeText, setRemoveText] = useState("Remove From List");
-  const [remove, setRemove] = useState(false);
-  const [confirm, setConfirm] = useState(false);
+  const [sortOption, setSortOption] = useState("alphabetical"); //sorting option
+  const [sortList, setSortList] = useState(ShopList); //array of sorted items
+  const [groupStore, setGroupStore] = useState(false); //group by store boolean
+  const [removeText, setRemoveText] = useState("Remove From List"); //text below remove button
+  const [remove, setRemove] = useState(false); //whether to remove or update text
+  const [confirm, setConfirm] = useState(false); //whether to show remove confirmation
+  const [removed, setRemoved] = useState([]); //array of removed items
 
   /* Sets sort to default (alphabeical) on page load. */
   useEffect(() => {
     setSortList([...ShopList].sort((a, b) => a.name.localeCompare(b.name)));
   }, []);
+
+  /* Re-sorts the list if an item is added back from removed. */
+  useEffect(() => {
+    if(groupStore) {
+      sortGroup(sortOption);
+    } else {
+      sortReg(sortOption);
+    }
+  }, [removed]);
 
   /* Changes the sorting option currently selected if it's not called by the group checkbox
    *  then gets correct sorting method.
@@ -31,7 +39,7 @@ function ShoppingList() {
   const handleSortChange = (event) => {
     let { value } = event.target;
     
-    if(value === "groupByStore") {
+    if(value === "groupByStore" || value === "undo") {
       value = sortOption;
     } else {
       setSortOption(value);
@@ -48,22 +56,22 @@ function ShoppingList() {
   const sortReg = (value) => {
     switch (value) {
       case 'alphabetical':
-        setSortList([...ShopList].sort((a, b) => a.name.localeCompare(b.name)));
+        setSortList([...sortList].sort((a, b) => a.name.localeCompare(b.name)));
         break;
       case 'priceLow':
-        setSortList([...ShopList].sort((a, b) => a.price - b.price));
+        setSortList([...sortList].sort((a, b) => a.price - b.price));
         break;
       case 'priceHigh':
-        setSortList([...ShopList].sort((a, b) => b.price - a.price));
+        setSortList([...sortList].sort((a, b) => b.price - a.price));
         break;
       case 'distLow':
-        setSortList([...ShopList].sort((a, b) => a.distance - b.distance));
+        setSortList([...sortList].sort((a, b) => a.distance - b.distance));
         break;
       case 'distHigh':
-        setSortList([...ShopList].sort((a, b) => b.distance - a.distance));
+        setSortList([...sortList].sort((a, b) => b.distance - a.distance));
         break;
       default:
-        setSortList(ShopList);
+        setSortList(sortList);
         break;
     }
   }
@@ -72,22 +80,22 @@ function ShoppingList() {
   const sortGroup = (value) => {
     switch (value) {
       case 'alphabetical':
-        setSortList(group([...ShopList].sort((a, b) => a.name.localeCompare(b.name))));
+        setSortList(group([...sortList].sort((a, b) => a.name.localeCompare(b.name))));
         break;
       case 'priceLow':
-        setSortList(group([...ShopList].sort((a, b) => a.price - b.price)));
+        setSortList(group([...sortList].sort((a, b) => a.price - b.price)));
         break;
       case 'priceHigh':
-        setSortList(group([...ShopList].sort((a, b) => b.price - a.price)));
+        setSortList(group([...sortList].sort((a, b) => b.price - a.price)));
         break;
       case 'distLow':
-        setSortList(group([...ShopList].sort((a, b) => a.distance - b.distance)));
+        setSortList(group([...sortList].sort((a, b) => a.distance - b.distance)));
         break;
       case 'distHigh':
-        setSortList(group([...ShopList].sort((a, b) => b.distance - a.distance)));
+        setSortList(group([...sortList].sort((a, b) => b.distance - a.distance)));
         break;
       default:
-        setSortList(group(ShopList));
+        setSortList(group(sortList));
         break;
     }
   }
@@ -127,22 +135,47 @@ function ShoppingList() {
     return result;
   }
 
-  /* Removes an item at a specified index from the list. */
-  const removeItem = (index) => {
+  /* Does stuff when remove button is clicked. */
+  const handleRemove = (index) => {
     if(remove) {
-      const updated = [...sortList];
-      updated.splice(index, 1);
-      setSortList(updated);
+      copyRemove(index); 
+      removeItem(index);
+
       setRemove(false);
       setRemoveText("Remove From List")
       setConfirm(true);
+
       setTimeout(() => {
         setConfirm(false);
-      }, 3000);
+      }, 1500);
     } else {
       setRemoveText("Click To Confirm");
       setRemove(true);
       setConfirm(false);
+    }
+  }
+
+  /* Removes an item at a specified index from the list. */
+  const removeItem = (index) => {
+    const updated = [...sortList];
+    updated.splice(index, 1);
+    setSortList(updated);
+  }
+
+  /* Copies the removed item to a separate array. */
+  const copyRemove = (index) => {
+    const toRemove = sortList[index];
+    setRemoved([...removed, toRemove]);
+  }
+
+  /* Puts item from removed array back into main array. */
+  const undoRemove = () => {
+    if(removed.length !== 0) {
+      setSortList((prevSortList) => [...prevSortList, removed[removed.length-1]]);
+
+      const updated = [...removed];
+      updated.splice(removed.length-1);
+      setRemoved(updated);
     }
   }
 
@@ -160,21 +193,21 @@ function ShoppingList() {
       <div className='header'>
         <h1>Your Shopping List:</h1>
         {confirm ? <p className='confirm'>Item Removed Successfully</p> : <p></p>}
-        <button className='undo'>Undo Remove</button>
+        <button className='undo' value="undo" onClick={undoRemove}>Undo Remove</button>
       </div>
       {sortList.map((item, index) => (
         <div key={index} className='item'>
-          <img className='divideTop' src='https://i.ytimg.com/vi/XIMLoLxmTDw/hqdefault.jpg'/>
+          <img className='divideTop' src='https://i.ytimg.com/vi/XIMLoLxmTDw/hqdefault.jpg' alt='.'/>
           <img src={item.img} alt={item.name} className='itemImage'/>
           <div className='itemInfo'>
             <h3>{item.name}</h3>
             <p>Store: {item.store}, Price: ${item.price}, Distance: {item.distance}km away</p>
           </div>
           <div className='remove'>
-            <button className='rButton' onClick={() => removeItem(index)}><img className='removeX' src='https://cdn-icons-png.flaticon.com/512/109/109602.png' alt='remove from list'/></button>
+            <button className='rButton' onClick={() => handleRemove(index)}><img className='removeX' src='https://cdn-icons-png.flaticon.com/512/109/109602.png' alt='remove from list'/></button>
             <p>{removeText}</p>
           </div>
-          <img className='divideBot' src='https://i.ytimg.com/vi/XIMLoLxmTDw/hqdefault.jpg'/>
+          <img className='divideBot' src='https://i.ytimg.com/vi/XIMLoLxmTDw/hqdefault.jpg' alt='.'/>
         </div>
       ))}
       {/* If sortList is empty, display message, otherwise display total cost. */}

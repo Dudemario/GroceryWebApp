@@ -30,6 +30,11 @@
     background-color: transparent;
 }
 
+.undo:hover {
+    background-color: aliceblue;
+    cursor: pointer;
+}
+
 .item {
     display: flex;
     align-items: center;
