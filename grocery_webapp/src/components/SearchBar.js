@@ -11,15 +11,7 @@ function SearchBar({placeholder, data}) {
             <SearchIcon />
         </div>
       </div> 
-      <div className="dataResult">
-        {data.map((value, key) => {
-          return  (
-            <a className="dataItem" href={value.link} target="_blank"> 
-            {" "}
-            {value.title} </a>
-        );
-        })}
-      </div> 
+      
     </div>
   )
 }
