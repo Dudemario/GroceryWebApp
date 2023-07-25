@@ -1,0 +1,25 @@
+.searchresult {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.items {
+    display: flex;
+    overflow-y: auto;
+    max-height: 400px;
+    margin-bottom: 50px;
+}
+
+.image {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    margin-right: 10px;
+}
+
+.info {
+    text-align: center;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    line-height: 140%;
+}

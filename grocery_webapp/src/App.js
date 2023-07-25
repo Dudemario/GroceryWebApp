@@ -2,8 +2,8 @@ import './App.css';
 import Navbar from "./components/Navbar";  
 import Footer from "./components/Footer";  
 import Home from "./pages/Home";
-
 import About from "./pages/About";
+import SearchResult from './pages/SearchResult';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 
@@ -16,7 +16,7 @@ function App() {
         <Route path="/" exact element={<Home/>} />
 
         <Route path="/about" exact element={<About/>}/>
-
+        <Route path="/result" exact element={<SearchResult/>}/>
       </Routes>
       <Footer />
     </Router>
