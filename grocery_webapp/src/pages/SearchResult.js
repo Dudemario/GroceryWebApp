@@ -14,6 +14,13 @@ const getName = (filePath) => {
 
 const SearchResult = () => {
   const [fileData, setFileData] = useState([]);
+  const [sortOption, setSortOption] = useState("alphabetical");
+
+  const handleSortChange = (event) => {
+    let { value } = event.target;
+    
+    setSortOption(value);
+  }
 
   useEffect(() => {
     const fetchData = async () => {
@@ -42,6 +49,15 @@ const SearchResult = () => {
   return (
     <div className='searchresult'>
       <h1>Showing Results For:</h1>
+      <div className='options'>
+        <p className='optionText'>Sorting:</p>
+        <input type='radio' value="alphabetical" checked={sortOption === "alphabetical"} onChange={handleSortChange} /> <p className='optionText'>recommended</p> 
+        <input type='radio' value="priceLow" checked={sortOption === "priceLow"} onChange={handleSortChange}/> <p className='optionText'>price (lowest)</p>
+        <input type='radio' value="priceHigh" checked={sortOption === "priceHigh"} onChange={handleSortChange}/> <p className='optionText'>price (highest)</p>
+        <input type='radio' value="distLow" checked={sortOption === "distLow"} onChange={handleSortChange}/> <p className='optionText'>distance (nearest)</p>
+        <input type='radio' value="distHigh" checked={sortOption === "distHigh"} onChange={handleSortChange}/> <p className='optionText'>distance (furthest)</p>
+        <input type='checkbox' value='withinDistance'/> <p>only show stores within certain radius</p>
+      </div>
       {fileData.map((file, index) => (
         <div key={index}>
           <h3>{file.name}</h3>

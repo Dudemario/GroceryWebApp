@@ -3,6 +3,14 @@
     margin-right: 20px;
 }
 
+.options {
+    display: flex;
+}
+
+.optionText {
+    margin-right: 20px;
+}
+
 .items {
     display: flex;
     overflow-y: auto;
