@@ -22,7 +22,7 @@ function Footer() {
             <LinkedInIcon />
           </a>
         </div>
-        <p> &copy; 2023 cum.com</p>
+        <p> &copy; 2023 a.com</p>
       </div>
     );
   }
