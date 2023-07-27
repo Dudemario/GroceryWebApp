@@ -22,7 +22,8 @@
     width: 200px;
     height: 200px;
     object-fit: cover;
-    margin-right: 10px;
+    margin-right: 15px;
+    margin-left: 15px;
 }
 
 .info {
@@ -30,4 +31,9 @@
     margin-top: 5px;
     margin-bottom: 5px;
     line-height: 140%;
+}
+
+.addButton {
+    margin-top: 6px;
+    margin-bottom: 6px;
 }
