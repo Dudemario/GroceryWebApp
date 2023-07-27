@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 import Papa from 'papaparse';
+import { addToList } from '../components/List';
 import "../styles/Result.css";
 
 const fileContext = require.context('../pages/website_searches/', false, /\.csv$/);
@@ -65,7 +65,7 @@ const SearchResult = () => {
                 <div className='info'>
                   <div><b>{item.title}</b></div>
                   <div>{item.price}</div>
-                  <button className='addButton'>Add to List</button>
+                  <button className='addButton' onClick={() => addToList(item.title, item.price, file.name, 1, item.img)}>Add to List</button>
                 </div>
               </div>
             ))}
