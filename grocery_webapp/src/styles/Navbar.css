@@ -19,14 +19,6 @@
   }
   
   .searchbar {
-/*    flex: 50%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: "Nunito", sans-serif;
-    transform: translateX(-350px);
-    z-index: 1; */
     width: 100vw;
     height: 100vh;
     display: flex;
