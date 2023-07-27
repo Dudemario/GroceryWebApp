@@ -15,11 +15,32 @@ const getName = (filePath) => {
 
 const SearchResult = () => {
   const [fileData, setFileData] = useState([]);
+  const [sortedData, setSortedData] = useState([]);
   const [sortOption, setSortOption] = useState("relevance");
+  const [statusMsg, setStatusMsg] = useState("Retrieving Products...")
 
   const handleSortChange = (event) => {
     let { value } = event.target;  
     setSortOption(value);
+    console.log(sortOption);
+    
+    switch (value) {
+      case 'relevance':
+        setSortedData(fileData);
+        break;
+      case 'priceLow':
+        const sort = fileData.map((file) => ({
+          name: file.name,
+          data: [...file.data].sort((a, b) => {
+            return parseFloat(a.price.replace('$','')) - parseFloat(b.price.replace('$',''));
+          })
+        }));
+        setSortedData(sort);
+        break;
+    }
+
+    console.log(fileData[0].data);
+    console.log(sortedData[0].data);
   }
 
   useEffect(() => {
@@ -42,20 +63,25 @@ const SearchResult = () => {
         });
       }
       setFileData(parsedData);
+      setSortedData(parsedData);
     };
 
     fetchData();
+
+    setTimeout(() => {
+      setStatusMsg("There was an error fetching results");
+    }, 5000)
   }, []);
 
   return (
     <div className='searchresult'>
-      <h1>Showing Results For:</h1>
+      <h1>Showing Results For :</h1>
       <div className='options'>
         <p className='optionText'>Sort By:</p>
         <input type='radio' value="relevance" checked={sortOption === "relevance"} onChange={handleSortChange} /> <p className='optionText'>relevance</p> 
         <input type='radio' value="priceLow" checked={sortOption === "priceLow"} onChange={handleSortChange}/> <p className='optionText'>price (lowest)</p>
       </div>
-      {fileData.map((file, index) => (
+      {sortedData.map((file, index) => (
         <div key={index}>
           <h3>{file.name}</h3>
           <div className='items'>
@@ -72,7 +98,7 @@ const SearchResult = () => {
           </div>
         </div>
       ))}
-      {fileData.length === 0 ? <h2>There was an error fetching results</h2> : null}
+      {fileData.length === 0 ? <h2>{statusMsg}</h2> : null}
     </div>
   );
 };
