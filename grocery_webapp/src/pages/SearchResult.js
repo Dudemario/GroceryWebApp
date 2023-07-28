@@ -6,19 +6,31 @@ import "../styles/Result.css";
 const fileContext = require.context('../pages/website_searches/', false, /\.csv$/);
 const csvFiles = fileContext.keys().map(fileContext);
 
+/* Parses the name of the store from the csv file title. */
 const getName = (filePath) => {
   let parts = filePath.split('/');
   parts = parts[3].split('.');
+  parts = parts[0].split('~');
   const fileName = parts[0];
   return fileName;
 };
 
-const SearchResult = () => {
-  const [fileData, setFileData] = useState([]);
-  const [sortedData, setSortedData] = useState([]);
-  const [sortOption, setSortOption] = useState("relevance");
-  const [statusMsg, setStatusMsg] = useState("Retrieving Products...")
+/* Parses the distance to the store from the csv file title. */
+const getDist = (filePath) => {
+  let parts = filePath.split('/');
+  parts = parts[3].split('.');
+  parts = parts[0].split('~');
+  const fileName = parts[1];
+  return fileName;
+}
 
+const SearchResult = () => {
+  const [fileData, setFileData] = useState([]); //default file data
+  const [sortedData, setSortedData] = useState([]); //sorted file data
+  const [sortOption, setSortOption] = useState("relevance"); //sorting option
+  const [statusMsg, setStatusMsg] = useState("Retrieving Products...") //placeholder message at bottom
+
+  /* Toggles the sorting between the default sorting and sorting by price. */
   const handleSortChange = (event) => {
     let { value } = event.target;  
     setSortOption(value);
@@ -37,12 +49,16 @@ const SearchResult = () => {
         }));
         setSortedData(sort);
         break;
+      default:
+        setSortedData(fileData);
+        break;
     }
 
     console.log(fileData[0].data);
     console.log(sortedData[0].data);
   }
 
+  /* Parses information from the csv files. */
   useEffect(() => {
     const fetchData = async () => {
       const parsedData = [];
@@ -53,7 +69,7 @@ const SearchResult = () => {
             header: true,
             skipEmptyLines: true,
             complete: function (result) {
-              parsedData.push({ name: getName(csvFiles[i]), data: result.data });
+              parsedData.push({ name: getName(csvFiles[i]), distance: getDist(csvFiles[i]), data: result.data });
               resolve();
             },
             error: function (error) {
@@ -62,8 +78,8 @@ const SearchResult = () => {
           });
         });
       }
-      setFileData(parsedData);
-      setSortedData(parsedData);
+      setFileData([...parsedData].sort((a,b) => a.distance - b.distance)); //sorts by distance
+      setSortedData([...parsedData].sort((a,b) => a.distance - b.distance));
     };
 
     fetchData();
@@ -75,7 +91,7 @@ const SearchResult = () => {
 
   return (
     <div className='searchresult'>
-      <h1>Showing Results For :</h1>
+      <h1>Showing Results For {/*item name goes here*/}:</h1>
       <div className='options'>
         <p className='optionText'>Sort By:</p>
         <input type='radio' value="relevance" checked={sortOption === "relevance"} onChange={handleSortChange} /> <p className='optionText'>relevance</p> 
@@ -83,7 +99,7 @@ const SearchResult = () => {
       </div>
       {sortedData.map((file, index) => (
         <div key={index}>
-          <h3>{file.name}</h3>
+          <h3>{file.name}, {file.distance}km away</h3>
           <div className='items'>
             {file.data.map((item, idx) => (
               <div key={idx}>
