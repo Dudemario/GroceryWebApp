@@ -3,7 +3,7 @@ import Papa from 'papaparse';
 import { addToList } from '../components/List';
 import "../styles/Result.css";
 
-const fileContext = require.context('../pages/website_searches/', false, /\.csv$/);
+const fileContext = require.context('../pages/website_searches/', false, /\.csv$/); //csv files path
 const csvFiles = fileContext.keys().map(fileContext);
 
 /* Parses the name of the store from the csv file title. */
@@ -11,8 +11,7 @@ const getName = (filePath) => {
   let parts = filePath.split('/');
   parts = parts[3].split('.');
   parts = parts[0].split('~');
-  const fileName = parts[0];
-  return fileName;
+  return parts[0];
 };
 
 /* Parses the distance to the store from the csv file title. */
@@ -20,8 +19,7 @@ const getDist = (filePath) => {
   let parts = filePath.split('/');
   parts = parts[3].split('.');
   parts = parts[0].split('~');
-  const fileName = parts[1];
-  return fileName;
+  return parts[1];
 }
 
 const SearchResult = () => {
@@ -36,26 +34,18 @@ const SearchResult = () => {
     setSortOption(value);
     console.log(sortOption);
     
-    switch (value) {
-      case 'relevance':
-        setSortedData(fileData);
-        break;
-      case 'priceLow':
-        const sort = fileData.map((file) => ({
-          name: file.name,
-          data: [...file.data].sort((a, b) => {
-            return parseFloat(a.price.replace('$','')) - parseFloat(b.price.replace('$',''));
-          })
-        }));
-        setSortedData(sort);
-        break;
-      default:
-        setSortedData(fileData);
-        break;
+    if(value.valueOf() === "relevance") {
+      setSortedData(fileData);
+    } else {
+      const sort = fileData.map((file) => ({
+        name: file.name,
+        distance: file.distance,
+        data: [...file.data].sort((a, b) => {
+          return parseFloat(a.price.replace('$','')) - parseFloat(b.price.replace('$',''));
+        })
+      }));
+      setSortedData(sort);
     }
-
-    console.log(fileData[0].data);
-    console.log(sortedData[0].data);
   }
 
   /* Parses information from the csv files. */
