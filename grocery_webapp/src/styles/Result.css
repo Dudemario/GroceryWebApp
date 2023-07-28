@@ -5,6 +5,7 @@
 
 .options {
     display: flex;
+    margin-bottom: 10px;
 }
 
 .optionText {
@@ -15,7 +16,7 @@
     display: flex;
     overflow-y: auto;
     max-height: 400px;
-    margin-bottom: 50px;
+    margin-bottom: 30px;
 }
 
 .image {
@@ -36,4 +37,12 @@
 .addButton {
     margin-top: 6px;
     margin-bottom: 6px;
+}
+
+.divide {
+    position: relative;
+    width: 98%;
+    height: 2px;
+    opacity: 50%;
+    margin-bottom: 10px;
 }

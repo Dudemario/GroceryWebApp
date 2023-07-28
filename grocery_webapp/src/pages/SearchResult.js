@@ -96,6 +96,7 @@ const SearchResult = () => {
         <input type='radio' value="relevance" checked={sortOption === "relevance"} onChange={handleSortChange} /> <p className='optionText'>relevance</p> 
         <input type='radio' value="priceLow" checked={sortOption === "priceLow"} onChange={handleSortChange}/> <p className='optionText'>price (lowest)</p>
       </div>
+      <img className='divide' src='https://i.ytimg.com/vi/XIMLoLxmTDw/hqdefault.jpg' alt='.'/>
       {sortedData.map((file, index) => (
         <div key={index}>
           <h3>{file.name}, {file.distance}km away <button onClick={() => handleCollapse(index)}>{file.show ? "collapse" : "show"}</button></h3>
@@ -113,6 +114,7 @@ const SearchResult = () => {
             ))}
           </div>
           ) : null}
+          <img className='divide' src='https://i.ytimg.com/vi/XIMLoLxmTDw/hqdefault.jpg' alt='.'/>
         </div>
       ))}
       {fileData.length === 0 ? <h2>{statusMsg}</h2> : null}
