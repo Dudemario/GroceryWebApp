@@ -40,6 +40,7 @@ const SearchResult = () => {
       const sort = fileData.map((file) => ({
         name: file.name,
         distance: file.distance,
+        show: true,
         data: [...file.data].sort((a, b) => {
           return parseFloat(a.price.replace('$','')) - parseFloat(b.price.replace('$',''));
         })
@@ -59,7 +60,7 @@ const SearchResult = () => {
             header: true,
             skipEmptyLines: true,
             complete: function (result) {
-              parsedData.push({ name: getName(csvFiles[i]), distance: getDist(csvFiles[i]), data: result.data });
+              parsedData.push({ name: getName(csvFiles[i]), distance: getDist(csvFiles[i]), data: result.data, show: true });
               resolve();
             },
             error: function (error) {
@@ -79,6 +80,14 @@ const SearchResult = () => {
     }, 5000)
   }, []);
 
+  const handleCollapse = (index) => {
+    setSortedData((prevSorted) => {
+      const update = [...prevSorted];
+      update[index] = { ...prevSorted[index], show: !prevSorted[index].show };
+      return update;
+    });
+  }
+
   return (
     <div className='searchresult'>
       <h1>Showing Results For {/*item name goes here*/}:</h1>
@@ -89,7 +98,8 @@ const SearchResult = () => {
       </div>
       {sortedData.map((file, index) => (
         <div key={index}>
-          <h3>{file.name}, {file.distance}km away</h3>
+          <h3>{file.name}, {file.distance}km away <button onClick={() => handleCollapse(index)}>{file.show ? "collapse" : "show"}</button></h3>
+          {file.show ? (
           <div className='items'>
             {file.data.map((item, idx) => (
               <div key={idx}>
@@ -102,6 +112,7 @@ const SearchResult = () => {
               </div>
             ))}
           </div>
+          ) : null}
         </div>
       ))}
       {fileData.length === 0 ? <h2>{statusMsg}</h2> : null}
