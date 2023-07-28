@@ -1,10 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useHistory } from 'react';
 import "../styles/SearchBar.css";
+import {findWordEntered} from "./Query";
 import SearchIcon from '@mui/icons-material/Search';
 import CloseIcon from '@mui/icons-material/Close';
 
-function SearchBar({placeholder, data}) {
 
+function SearchBar({placeholder, data}) {
+    const history = useHistory();
+
+    const handleKeyDown = (change) => {
+      if (change.key === 'Enter') {
+        findWordEntered(change.target.value);
+        history.push("/results/${change/target/value}");
+      }
+    }
+    
 /* creates variable called filteredData with a function setFilteredData*/
     const [filteredData, setFilteredData] = useState ([]);
     const [wordEntered, setWordEntered] = useState ("");
@@ -34,7 +44,7 @@ function SearchBar({placeholder, data}) {
   return (
     <div className="search">
       <div className="searchInputs">
-        <input type="text" placeholder={placeholder} value = {wordEntered} onChange= {handleFilter}/>
+        <input type="text" placeholder={placeholder} value={wordEntered} onChange={handleFilter} onKeyDown={handleKeyDown}/>
         <div className="searchIcon"> 
             {filteredData.length === 0 ? ( 
               <SearchIcon />
