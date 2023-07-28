@@ -1,4 +1,5 @@
-import React, { useState, useHistory } from 'react';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import "../styles/SearchBar.css";
 import {findWordEntered} from "./Query";
 import SearchIcon from '@mui/icons-material/Search';
@@ -6,12 +7,14 @@ import CloseIcon from '@mui/icons-material/Close';
 
 
 function SearchBar({placeholder, data}) {
-    const history = useHistory();
+    const navigate = useNavigate();
 
+/* when change is made and if the key hit is entered, then user is linked to page about searched item. 
+Additionally, entered value is assigned to a variable in another file through findWordEntered function. */
     const handleKeyDown = (change) => {
-      if (change.key === 'Enter') {
+     if (change.key === 'Enter') {
         findWordEntered(change.target.value);
-        history.push("/results/${change/target/value}");
+        navigate(`/results/${change.target.value}`);
       }
     }
     
