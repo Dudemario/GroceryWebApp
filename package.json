@@ -1,6 +1,5 @@
 {
   "dependencies": {
-    "csv-parser": "^3.0.0",
-    "react-router-dom": "^6.14.1"
+    "papaparse": "^5.4.1"
   }
 }

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import ReorderIcon from '@mui/icons-material/Reorder';
 import "../styles/Navbar.css";
 import SearchBar from "./SearchBar.js";
-import BookData from "../Data.json"
+import FoodData from "../Data.json"
 
 function Navbar() {
   const [openLinks, setOpenLinks] = useState(false);
@@ -25,11 +25,9 @@ function Navbar() {
           <Link to="/contact"> Contact Us </Link>
         </div>
       </div>
-
       <div className="searchbar">
-         <SearchBar placeholder="Search Products" data={BookData}/>
+         <SearchBar placeholder="Search Products" data={FoodData}/>
       </div>
-
       <div className="rightSide"> 
         <Link to="/"> Home </Link>
         <Link to="/shoppingList"> Shopping List </Link>
