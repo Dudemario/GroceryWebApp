@@ -56,12 +56,12 @@ Additionally, entered value is assigned to a variable in another file through fi
       })
 
 /* to not display the options below the search bar if there is nothing there*/
-      if (searchWord === "") {
-        setFilteredData([]);
-      } else {
-        setFilteredData(newFilter);
-      } 
-    }
+if (searchWord === "") {
+  setFilteredData([]);
+} else {
+  setFilteredData(newFilter);
+} 
+}
 
 /* function to get CloseIcon to clear the text in the search bar*/
   const clearInput = () => {
@@ -92,9 +92,9 @@ Additionally, entered value is assigned to a variable in another file through fi
         );
         })}
       </div>
-      )}
+      )}  
     </div>
   )
-}
+} 
 
-export default SearchBar
+export default SearchBar 
