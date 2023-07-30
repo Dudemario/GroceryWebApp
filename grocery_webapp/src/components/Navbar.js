@@ -6,7 +6,7 @@ import "../styles/Navbar.css";
 import SearchBar from "./SearchBar.js";
 import FoodData from "../Data.json"
 
-function Navbar() {
+function Navbar () {
   const [openLinks, setOpenLinks] = useState(false);
 
   const toggleNavbar = () => {
@@ -24,7 +24,7 @@ function Navbar() {
           <Link to="/about"> About </Link>
         </div>
       </div>
-
+      
       <div className="searchbar">
          <SearchBar placeholder="Search Products" data={FoodData}/>
       </div>

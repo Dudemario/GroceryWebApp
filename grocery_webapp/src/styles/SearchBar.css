@@ -10,7 +10,7 @@
   border-bottom-right-radius: 0px;
   font-size: 18px;
   padding: 15px;
-  width: 35vw; 
+  width: 35vw;
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }
 
@@ -39,9 +39,9 @@ input:focus {
   overflow-y: auto;
 }
 
-/* .dataResult::-webkit-scrollbar {
+.dataResult::-webkit-scrollbar {
   display: none;
-} */
+} 
 
 .dataResult .dataItem {
   width: 100%;
@@ -54,6 +54,7 @@ input:focus {
 .dataItem p {
   margin-left: 10px;
 }
+
 a {
   text-decoration: none;
 }

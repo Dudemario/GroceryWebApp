@@ -18,14 +18,15 @@
   .navbar .leftSide img {
     display: flex;
     width: 150px;
-  } 
-  
+  }
+
   .searchbar {
     display: flex;  
+    display: flex;
     flex-direction: column;
     font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
     padding-top: 20px;
-    z-index: 1 
+    z-index: 1;
   }
 
   .navbar .rightSide {
@@ -54,12 +55,12 @@
     font-size: 40px;
   }
   
-  .navbar #open {
+/*  .navbar #open {
     padding-left: 0px;
   }
   .navbar #open img {
     display: none;
-  }
+  } */
   
   .navbar #close img {
     display: inherit;
