@@ -19,7 +19,7 @@ function SearchBar({placeholder, data}) {
             {value.title} </a>
         );
         })}
-      </div>
+      </div> 
     </div>
   )
 }

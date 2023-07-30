@@ -1,33 +1,30 @@
-.paragraph {
-  text-indent: 50px;
-}
-
 .about {
   width: 100%;
   height: 90vh;
   display: flex;
   flex-direction: column;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }
 
 .aboutTop {
   width: 100%;
-  height: 45%;
-  background-position: center;
+  height: 50%;
+  background-position: 0px -274px;
   background-repeat: no-repeat;
-  background-size: cover;
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  background-size: cover; 
 }
 
 .aboutBottom {
   display: flex;
   flex-direction: column;
-  height: 55%;
+  height: 50%; 
   align-items: center;
-  margin-top: 50px;
+  margin-top: 50px; 
 }
 
 .aboutBottom p {
   width: 1200px;
+  text-indent: 50px;
 }
 
 .about .aboutBottom h1 {
