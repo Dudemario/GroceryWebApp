@@ -1,26 +1,24 @@
 import React from 'react'
-import shoppingCartImage from "../assets/shoppingCart.jpg";
+import background from "../assets/aboutUsBackground3.png";
 import "../styles/About.css";
 
 function About() {
   return (
     <div className="about">
-      <div className="aboutTop" style={{ backgroundImage: `url(${shoppingCartImage})` }}> 
+      <div className="aboutTop" style={{ backgroundImage: `url(${background})` }}> 
       
       </div>
       <div className="aboutBottom"> 
         <h1>ABOUT THE WEBSITE</h1>
-        <p className="paragraph"> Welcome to the certified ape zone where you got five absolute
-            dumbasses working on a website together to learn react over the
-            summer like the giant fucking losers they are. Their names
-            are Justin Li, Danny Zhang, Emma Gui, Benjamin Wang, Vincent Sun 
-            (2396 North Ridge Trail). You may be asking what the point 
-            of this ridiculous and stupid useless page is, and to answer
-            your question, Yeah. We needed another page to look cool and
-            I just needed a bunch of filler text so I'm just writing this
-            to take up space to see how this ends up turning out. please
-            work otherwise im gonna cry myself to sleep tonight thank you
-            very much. 
+        <p> At Optimal Shopper, our mission is to revolutionize the way you shop for groceries. 
+          We understand the importance of finding the best deals without compromising on quality, 
+          and that's why we have developed a cutting-edge platform that combines the power of price and location filters. 
+          With Optimal Shopper, you can effortlessly navigate through a vast array of grocery options, 
+          filtering them based on your desired price range and proximity to your location. 
+          Whether you're a budget-conscious shopper or simply looking to save time and effort, 
+          our user-friendly interface empowers you to make informed decisions and discover the most optimal grocery options that suit your needs. 
+          Say goodbye to endless searching and hello to a smarter, more efficient way of shopping. 
+          Join us at Optimal Shopper and unlock a world of convenience, savings, and satisfaction.
         </p>
       </div>
     </div>
