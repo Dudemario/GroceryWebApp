@@ -24,6 +24,7 @@
 .footer .button {
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   font-weight: 10;
-}
+  cursor: pointer;
+  border-style: double;}
 
 
