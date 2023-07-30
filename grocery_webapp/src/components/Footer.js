@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import InstagramIcon from '@mui/icons-material/Instagram';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import FacebookIcon from '@mui/icons-material/Facebook';
@@ -22,7 +23,7 @@ function Footer() {
             <LinkedInIcon />
           </a>
         </div>
-        <p> &copy;OptimalShopper</p>
+        <p> OptimalShopper</p>
       </div>
     );
   }
