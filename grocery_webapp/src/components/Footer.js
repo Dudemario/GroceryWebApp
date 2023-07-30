@@ -23,7 +23,7 @@ function Footer() {
             <LinkedInIcon />
           </a>
         </div>
-       <p> OptimalShopper.com</p>
+       <p> OptimalShopper.com test</p>
       </div>
     );
   }
