@@ -4,6 +4,7 @@ import Papa from 'papaparse';
 import { addToList } from '../components/List';
 import "../styles/Result.css";
 
+const useCookies= require("react-cookie");
 const fileContext = require.context('../pages/website_searches/', false, /\.csv$/); //csv files path
 const csvFiles = fileContext.keys().map(fileContext);
 
@@ -29,13 +30,13 @@ const SearchResult = () => {
   const [sortOption, setSortOption] = useState("relevance"); //sorting option
   const [statusMsg, setStatusMsg] = useState("Retrieving Products...") //placeholder message at bottom
   const { query } = useParams(); //get name of thing searched
+  const [cookies, setCookie] = useCookies.useCookies(['name']);
 
   /* Toggles the sorting between the default sorting and sorting by price. */
   const handleSortChange = (event) => {
     let { value } = event.target;  
     setSortOption(value);
     console.log(sortOption);
-    
     if(value.valueOf() === "relevance") {
       setSortedData(fileData);
     } else {
@@ -59,6 +60,7 @@ const SearchResult = () => {
   }
   /* Parses information from the csv files. */
   useEffect(() => {
+    console.log("REEEEE" + cookies.name);
     const fetchData = async () => {
       await waitForFiles();
       console.log("start");
