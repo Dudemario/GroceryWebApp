@@ -8,7 +8,7 @@
   }
   
   .navbar .leftSide {
-    flex: 50%; 
+    flex: 25%;
     height: 100%;
     display: flex;
     align-items: center;
@@ -18,16 +18,14 @@
   .navbar .leftSide img {
     display: flex;
     width: 150px;
-  } 
-  
+  }
+
   .searchbar {
     display: flex;
-    flex: 2%;
-    align-items: center;
     flex-direction: column;
     font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
     padding-top: 20px;
-    z-index: 1 
+    z-index: 1;
   }
 
   .navbar .rightSide {
@@ -56,12 +54,12 @@
     font-size: 40px;
   }
   
-  .navbar #open {
+/*  .navbar #open {
     padding-left: 0px;
   }
   .navbar #open img {
     display: none;
-  }
+  } */
   
   .navbar #close img {
     display: inherit;
