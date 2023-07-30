@@ -87,6 +87,7 @@ const SearchResult = () => {
     fetchData();
   }, []);
 
+  /* Collapses store row by hiding all elements. */
   const handleCollapse = (index) => {
     setSortedData((prevSorted) => {
       const update = [...prevSorted];

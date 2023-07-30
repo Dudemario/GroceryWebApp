@@ -93,3 +93,35 @@
     height: 2px;
     opacity: 30%;
 }
+
+.bottom {
+    display: flex;
+}
+
+.cButton {
+    margin-top: 20px;
+    width: auto;
+    height: 30px;
+    margin-left: auto;
+    margin-right: 40px;
+    border-color: red;
+    background-color: lightcoral;
+    font-weight: bold;
+}
+
+.confirm2 {
+    margin-left: auto;
+    margin-right: 40px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.coButton {
+    width: auto;
+    margin-left: 2px;
+    margin-right: 2px;
+    height: 30px;
+    border-color: red;
+    background-color: lightcoral;
+    font-weight: bold;
+}
