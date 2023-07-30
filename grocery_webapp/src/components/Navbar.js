@@ -17,12 +17,12 @@ function Navbar() {
     <div className="navbar">
 
       <div className="leftSide" id={openLinks ? "open" : "close"}>
+      <div className={`leftSide ${openLinks ? "open" : "close"}`}></div>
         <img src={logo} />
         <div className="hiddenLinks">
           <Link to="/"> Home </Link>
           <Link to="/shoppingList"> Shopping List </Link>
           <Link to="/about"> About </Link>
-          <Link to="/contact"> Contact Us </Link>
         </div>
       </div>
       <div className="searchbar">
@@ -32,7 +32,6 @@ function Navbar() {
         <Link to="/"> Home </Link>
         <Link to="/shoppingList"> Shopping List </Link>
         <Link to="/about"> About </Link>
-        <Link to="/contact"> Contact Us </Link>
         <button onClick={toggleNavbar}>
           <ReorderIcon/>   
         </button>
