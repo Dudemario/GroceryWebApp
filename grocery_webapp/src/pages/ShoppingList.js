@@ -199,7 +199,9 @@ function ShoppingList() {
       <div className='header'>
         <h1>Your Shopping List:</h1>
         {confirm ? <p className='confirm'>Item Removed Successfully</p> : <p></p>}
-        <button className='undo' value="undo" onClick={undoRemove}>Undo Remove</button>
+        {removed.length !== 0 ? (
+          <button className='undo' value="undo" onClick={undoRemove}>Undo Remove</button>
+        ) : null}
       </div>
       {sortList.map((item, index) => (
         <div key={index} className='item'>
