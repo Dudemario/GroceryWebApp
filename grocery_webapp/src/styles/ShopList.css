@@ -1,0 +1,95 @@
+.shoppingList {
+    margin-left: 20px;
+}
+
+.options {
+    margin-top: 10px;
+    display: flex;
+}
+
+.optionText {
+    margin-right: 20px;
+}
+
+.header {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.confirm {
+    margin-left: auto;
+    margin-top: 30px;
+}
+
+.undo {
+    margin-left: auto;
+    margin-top: 24px;
+    margin-right: 50px;
+    width: auto;
+    height: 24px;
+    background-color: transparent;
+}
+
+.undo:hover {
+    background-color: aliceblue;
+    cursor: pointer;
+}
+
+.item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 40px;
+    position: relative;
+}
+
+.itemImage {
+    width: 150px;
+    height: 150px;
+    margin-right: 20px;
+}
+
+.itemInfo {
+    margin-bottom: 10px;
+}
+
+.remove {
+    margin-left: auto;
+    margin-right: 50px;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.rButton {
+    width: auto;
+    height: 40px;
+    background-color: transparent;
+    border: transparent;
+}
+
+.removeX {
+    width: 30px;
+    height: 30px;
+    align-self: center;
+}
+
+.rButton:hover {
+    background-color: lightgray;
+    color: grey;
+    cursor: pointer;
+}
+
+.divideBot {
+    position: absolute;
+    margin-top: 175px;
+    width: 98%;
+    height: 2px;
+    opacity: 30%;
+}
+
+.divideTop {
+    position: absolute;
+    margin-bottom: 175px;
+    width: 98%;
+    height: 2px;
+    opacity: 30%;
+}

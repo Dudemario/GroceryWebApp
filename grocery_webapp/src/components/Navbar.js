@@ -25,11 +25,9 @@ function Navbar() {
           <Link to="/contact"> Contact Us </Link>
         </div>
       </div>
-
       <div className="searchbar">
          <SearchBar placeholder="Search Products" data={FoodData}/>
       </div>
-
       <div className="rightSide"> 
         <Link to="/"> Home </Link>
         <Link to="/shoppingList"> Shopping List </Link>
