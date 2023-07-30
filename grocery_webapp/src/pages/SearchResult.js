@@ -4,6 +4,7 @@ import Papa from 'papaparse';
 import { addToList } from '../components/List';
 import "../styles/Result.css";
 
+const useCookies= require("react-cookie");
 const fileContext = require.context('../pages/website_searches/', false, /\.csv$/); //csv files path
 const csvFiles = fileContext.keys().map(fileContext);
 
@@ -29,13 +30,13 @@ const SearchResult = () => {
   const [sortOption, setSortOption] = useState("relevance"); //sorting option
   const [statusMsg, setStatusMsg] = useState("Retrieving Products...") //placeholder message at bottom
   const { query } = useParams(); //get name of thing searched
+  const [cookies, setCookie] = useCookies.useCookies(['name']);
 
   /* Toggles the sorting between the default sorting and sorting by price. */
   const handleSortChange = (event) => {
     let { value } = event.target;  
     setSortOption(value);
     console.log(sortOption);
-    
     if(value.valueOf() === "relevance") {
       setSortedData(fileData);
     } else {
@@ -54,14 +55,17 @@ const SearchResult = () => {
   /* Waits for results folder to not be empty */
   const waitForFiles = async () => {
     while(csvFiles.length === 0) {
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      await new Promise((resolve) => setTimeout(resolve, 3000));
     }
   }
-
   /* Parses information from the csv files. */
   useEffect(() => {
+    console.log("REEEEE" + cookies.name);
     const fetchData = async () => {
       await waitForFiles();
+      console.log("start");
+      console.log(fileData);
+      console.log(csvFiles);
       setStatusMsg("");
       const parsedData = [];
       for (let i = 0; i < csvFiles.length; i++) {
@@ -74,6 +78,7 @@ const SearchResult = () => {
             complete: function (result) {
               parsedData.push({ name: getName(csvFiles[i]), distance: getDist(csvFiles[i]), data: result.data, show: true });
               resolve();
+            
             },
             error: function (error) {
               reject(error);
@@ -81,6 +86,8 @@ const SearchResult = () => {
           });
         });
       }
+      console.log("setting");
+      console.log(parsedData);
       setFileData([...parsedData].sort((a,b) => a.distance - b.distance)); //sorts by distance
       setSortedData([...parsedData].sort((a,b) => a.distance - b.distance));
     };

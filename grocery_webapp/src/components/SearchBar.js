@@ -5,15 +5,40 @@ import {findWordEntered} from "./Query";
 import SearchIcon from '@mui/icons-material/Search';
 import CloseIcon from '@mui/icons-material/Close';
 
+const useCookies = require("react-cookie");
+function timeout() {
+  return new Promise( res => setTimeout(res, 1000) );
+}
 
 function SearchBar({placeholder, data}) {
+    const [cookies, setCookie] = useCookies.useCookies(['name']);
     const navigate = useNavigate();
 
 /* when change is made and if the key hit is entered, then user is linked to page about searched item. 
 Additionally, entered value is assigned to a variable in another file through findWordEntered function. */
-    const handleKeyDown = (change) => {
+    const handleKeyDown = async (change) => {
+
+      
+      setCookie('name', "hi", { path: '/' });
      if (change.key === 'Enter') {
         findWordEntered(change.target.value);
+        try{
+          console.log(change.target.value);
+          fetch("/remove", {
+            method:"GET",
+            headers: {
+              "Content-Type": "application/json"
+            },
+          });
+          await timeout();
+          fetch("/scrape", {
+            method:"POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body:JSON.stringify({thing: change.target.value})
+          });
+        } catch (error) {throw error};
         navigate(`/results/${change.target.value}`);
       }
     }
@@ -31,12 +56,12 @@ Additionally, entered value is assigned to a variable in another file through fi
       })
 
 /* to not display the options below the search bar if there is nothing there*/
-      if (searchWord === "") {
-        setFilteredData([]);
-      } else {
-        setFilteredData(newFilter);
-      } 
-    }
+if (searchWord === "") {
+  setFilteredData([]);
+} else {
+  setFilteredData(newFilter);
+} 
+}
 
 /* function to get CloseIcon to clear the text in the search bar*/
   const clearInput = () => {
@@ -67,9 +92,9 @@ Additionally, entered value is assigned to a variable in another file through fi
         );
         })}
       </div>
-      )}
+      )}  
     </div>
   )
-}
+} 
 
-export default SearchBar
+export default SearchBar 

@@ -8,8 +8,9 @@
 
 .aboutTop {
   width: 100%;
-  height: 50%;
-  background-position: 0px -274px;
+  height: 55%;
+  background-position: center;
+/*  background-position: 0px -274px;*/
   background-repeat: no-repeat;
   background-size: cover; 
 }
@@ -17,9 +18,8 @@
 .aboutBottom {
   display: flex;
   flex-direction: column;
-  height: 50%; 
+  height: 45%; 
   align-items: center;
-  margin-top: 50px; 
 }
 
 .aboutBottom p {
@@ -29,10 +29,8 @@
 
 .about .aboutBottom h1 {
   font-weight: 400;
-  font-size: 70px;
+  font-size: 60px;
   color: black;
   height: 30px;
-  display: flex;
-  justify-content: center;
-  transform: translateY(-40px);
+  display: flex; 
 }
