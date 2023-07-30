@@ -43,7 +43,6 @@ app.listen(PORT, () => {
 });
 
 async function scrape(object) {
-  fsExtra.emptyDirSync("/Users/vincent/Documents/Projects/React/GroceryWebApp/grocery_webapp/src/pages/website_searches");
   const cluster = await Cluster.launch({
     puppeteer,
     concurrency: Cluster.CONCURRENCY_PAGE,
