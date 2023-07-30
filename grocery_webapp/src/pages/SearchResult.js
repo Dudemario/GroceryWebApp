@@ -12,7 +12,7 @@ const getName = (filePath) => {
   let parts = filePath.split('/');
   parts = parts[3].split('.');
   parts = parts[0].split('~');
-  return parts[0];
+  return parts[0].charAt(0).toUpperCase() + parts[0].slice(1);
 };
 
 /* Parses the distance to the store from the csv file title. */
@@ -108,7 +108,9 @@ const SearchResult = () => {
       <img className='divide' src='https://i.ytimg.com/vi/XIMLoLxmTDw/hqdefault.jpg' alt='.'/>
       {sortedData.map((file, index) => (
         <div key={index}>
-          <div className='title'><h3>{file.name}, {file.distance}km away </h3><button className='collapse' onClick={() => handleCollapse(index)}>{file.show ? "collapse" : "show"}</button></div>
+          {file.data.length !== 0 ? (
+            <div className='title'><h3>{file.name}, {file.distance}km away </h3><button className='collapse' onClick={() => handleCollapse(index)}>{file.show ? "collapse" : "show"}</button></div>
+          ) : null}
           {file.show ? (
           <div className='items'>
             {file.data.map((item, idx) => (
@@ -119,12 +121,16 @@ const SearchResult = () => {
                   <div>{item.price}</div>
                   <button className='addButton' onClick={() => addToList(item.title, item.price, file.name, file.distance, item.img)}>Add to List</button>
                 </div>
-                <img className='divideV' src='https://i.ytimg.com/vi/XIMLoLxmTDw/hqdefault.jpg' alt='.'/>
+                {idx !== 9 ? (
+                  <img className='divideV' src='https://i.ytimg.com/vi/XIMLoLxmTDw/hqdefault.jpg' alt='.'/>
+                ) : null}
               </div>
             ))}
           </div>
           ) : null}
-          <img className='divide' src='https://i.ytimg.com/vi/XIMLoLxmTDw/hqdefault.jpg' alt='.'/>
+          {file.data.length !== 0 ? (
+            <img className='divide' src='https://i.ytimg.com/vi/XIMLoLxmTDw/hqdefault.jpg' alt='.'/>
+          ) : null}
         </div>
       ))}
       {fileData.length === 0 ? <h2>{statusMsg}</h2> : null}
