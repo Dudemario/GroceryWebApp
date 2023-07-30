@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import Papa from 'papaparse';
 import { addToList } from '../components/List';
 import "../styles/Result.css";
@@ -27,6 +28,7 @@ const SearchResult = () => {
   const [sortedData, setSortedData] = useState([]); //sorted file data
   const [sortOption, setSortOption] = useState("relevance"); //sorting option
   const [statusMsg, setStatusMsg] = useState("Retrieving Products...") //placeholder message at bottom
+  const { query } = useParams(); //get name of thing searched
 
   /* Toggles the sorting between the default sorting and sorting by price. */
   const handleSortChange = (event) => {
@@ -49,9 +51,18 @@ const SearchResult = () => {
     }
   }
 
+  // Waits for results folder to not be empty
+  const waitForFiles = async () => {
+    while(csvFiles.length === 0) {
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+    }
+  }
+
   /* Parses information from the csv files. */
   useEffect(() => {
     const fetchData = async () => {
+      await waitForFiles();
+      setStatusMsg("");
       const parsedData = [];
       for (let i = 0; i < csvFiles.length; i++) {
         await new Promise((resolve, reject) => {
@@ -59,6 +70,7 @@ const SearchResult = () => {
             download: true,
             header: true,
             skipEmptyLines: true,
+            preview: 10,
             complete: function (result) {
               parsedData.push({ name: getName(csvFiles[i]), distance: getDist(csvFiles[i]), data: result.data, show: true });
               resolve();
@@ -74,12 +86,9 @@ const SearchResult = () => {
     };
 
     fetchData();
-
-    setTimeout(() => {
-      setStatusMsg("There was an error fetching results");
-    }, 5000)
   }, []);
 
+  /* Collapses store row by hiding all elements. */
   const handleCollapse = (index) => {
     setSortedData((prevSorted) => {
       const update = [...prevSorted];
@@ -90,7 +99,7 @@ const SearchResult = () => {
 
   return (
     <div className='searchresult'>
-      <h1>Showing Results For {/*item name goes here*/}:</h1>
+      <h1>Showing Results For "{query}":</h1>
       <div className='options'>
         <p className='optionText'>Sort By:</p>
         <input type='radio' value="relevance" checked={sortOption === "relevance"} onChange={handleSortChange} /> <p className='optionText'>relevance</p> 

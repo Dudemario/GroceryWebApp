@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { ShopList } from '../ListItems'
+import { ShopList } from '../components/List';
 import "../styles/ShopList.css";
 
 function ShoppingList() {
@@ -9,12 +9,18 @@ function ShoppingList() {
   const [removeText, setRemoveText] = useState("Remove From List"); //text below remove button
   const [remove, setRemove] = useState(false); //whether to remove or update text
   const [confirm, setConfirm] = useState(false); //whether to show remove confirmation
+  const [clear, setClear] = useState(false);
   const [removed, setRemoved] = useState([]); //array of removed items
 
-  /* Sets sort to default (alphabeical) on page load. */
+  /* Sets sort to default (alphabetical) on page load. */
   useEffect(() => {
     setSortList([...ShopList].sort((a, b) => a.name.localeCompare(b.name)));
   }, []);
+
+  /* Adds the list to localStorage when updated. */
+  useEffect(() => {
+    localStorage.setItem('shop_list', JSON.stringify(sortList));
+  }, [sortList])
 
   /* Re-sorts the list if an item is added back from removed. */
   useEffect(() => {
@@ -171,6 +177,13 @@ function ShoppingList() {
     }
   }
 
+  /* Sets sortList to an empty array. */
+  const clearList = () => {
+    const empty = [];
+    setSortList(empty);
+    setClear(!clear);
+  }
+
   return (
     <div className="shoppingList">
       <div className='options'>
@@ -202,8 +215,20 @@ function ShoppingList() {
           <img className='divideBot' src='https://i.ytimg.com/vi/XIMLoLxmTDw/hqdefault.jpg' alt='.'/>
         </div>
       ))}
-      {/* If sortList is empty, display message, otherwise display total cost. */}
-      {sortList.length === 0 ? <h2>Your Shopping List is Empty!</h2> : <h2>Total Cost: ${sortList.reduce((a, v) => a + v.price, 0).toFixed(2)}</h2>}
+      <div className='bottom'>
+        {/* If sortList is empty, display message, otherwise display total cost. */}
+        {sortList.length === 0 ? <h2>Your Shopping List is Empty!</h2> : <h2>Total Cost: ${sortList.reduce((a, v) => a + v.price, 0).toFixed(2)}</h2>}
+        {!clear && sortList.length !== 0 ? (
+          <button className='cButton' onClick={() => setClear(!clear)}>Clear Shopping List</button>
+        ) : (clear && sortList.length !== 0 && 
+          <div className='confirm2'>
+            <p>Are you sure?</p>
+            <p>This is irreversible.</p>
+            <button className='coButton' onClick={() => clearList()}>yes</button>
+            <button className='coButton' onClick={() => setClear(!clear)}>no</button>
+          </div>)}
+        
+      </div>
     </div>
   )
 }
