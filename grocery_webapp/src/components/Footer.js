@@ -23,7 +23,13 @@ function Footer() {
             <LinkedInIcon />
           </a>
         </div>
-       <p> OptimalShopper.com</p>
+       <p> If you have any questions:&nbsp;  
+        <a href = "mailto:benjaminwang4242@gmail.com" target="_blank">
+          <button className="button">
+             Email us here
+          </button>
+        </a>
+      </p>
       </div>
     );
   }
