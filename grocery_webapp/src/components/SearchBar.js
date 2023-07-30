@@ -4,16 +4,22 @@ import "../styles/SearchBar.css";
 import {findWordEntered} from "./Query";
 import SearchIcon from '@mui/icons-material/Search';
 import CloseIcon from '@mui/icons-material/Close';
+
+const useCookies = require("react-cookie");
 function timeout() {
   return new Promise( res => setTimeout(res, 1000) );
 }
 
 function SearchBar({placeholder, data}) {
+    const [cookies, setCookie] = useCookies.useCookies(['name']);
     const navigate = useNavigate();
 
 /* when change is made and if the key hit is entered, then user is linked to page about searched item. 
 Additionally, entered value is assigned to a variable in another file through findWordEntered function. */
     const handleKeyDown = async (change) => {
+
+      
+      setCookie('name', "hi", { path: '/' });
      if (change.key === 'Enter') {
         findWordEntered(change.target.value);
         try{
