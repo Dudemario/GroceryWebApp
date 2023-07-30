@@ -22,17 +22,17 @@ function Navbar() {
           <Link to="/"> Home </Link>
           <Link to="/shoppingList"> Shopping List </Link>
           <Link to="/about"> About </Link>
-          <Link to="/contact"> Contact Us </Link>
         </div>
       </div>
+
       <div className="searchbar">
          <SearchBar placeholder="Search Products" data={FoodData}/>
       </div>
+
       <div className="rightSide"> 
         <Link to="/"> Home </Link>
         <Link to="/shoppingList"> Shopping List </Link>
         <Link to="/about"> About </Link>
-        <Link to="/contact"> Contact Us </Link>
         <button onClick={toggleNavbar}>
           <ReorderIcon/>   
         </button>
