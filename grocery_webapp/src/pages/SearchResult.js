@@ -51,7 +51,7 @@ const SearchResult = () => {
     }
   }
 
-  // Waits for results folder to not be empty
+  /* Waits for results folder to not be empty. */
   const waitForFiles = async () => {
     while(csvFiles.length === 0) {
       await new Promise((resolve) => setTimeout(resolve, 1000));
