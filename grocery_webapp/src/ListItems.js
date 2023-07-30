@@ -10,7 +10,7 @@ import img9 from "./assets/tempshoplist/9.png";
 import img10 from "./assets/tempshoplist/10.png";
 import img11 from "./assets/tempshoplist/11.png";
 
-export const ShopList = [
+export const list = [
     {
         name: "Reliquary of the Golden Dawn",
         price: 3346.67,

@@ -25,11 +25,9 @@ function Navbar ({currentPage}) {
         </div>
       </div>
       
-      
       <div className="searchbar">
          <SearchBar placeholder="Search Products" data={FoodData}/>
       </div>
-      
 
       <div className="rightSide"> 
         <Link to="/"> Home </Link>
