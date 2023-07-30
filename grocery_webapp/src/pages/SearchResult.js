@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import Papa from 'papaparse';
 import { addToList } from '../components/List';
 import "../styles/Result.css";
@@ -27,6 +28,7 @@ const SearchResult = () => {
   const [sortedData, setSortedData] = useState([]); //sorted file data
   const [sortOption, setSortOption] = useState("relevance"); //sorting option
   const [statusMsg, setStatusMsg] = useState("Retrieving Products...") //placeholder message at bottom
+  const { query } = useParams(); //get name of thing searched
 
   /* Toggles the sorting between the default sorting and sorting by price. */
   const handleSortChange = (event) => {
@@ -73,6 +75,7 @@ const SearchResult = () => {
       setSortedData([...parsedData].sort((a,b) => a.distance - b.distance));
     };
 
+    console.log(query);
     fetchData();
 
     setTimeout(() => {
@@ -90,7 +93,7 @@ const SearchResult = () => {
 
   return (
     <div className='searchresult'>
-      <h1>Showing Results For {/*item name goes here*/}:</h1>
+      <h1>Showing Results For "{query}":</h1>
       <div className='options'>
         <p className='optionText'>Sort By:</p>
         <input type='radio' value="relevance" checked={sortOption === "relevance"} onChange={handleSortChange} /> <p className='optionText'>relevance</p> 

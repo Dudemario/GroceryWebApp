@@ -14,7 +14,7 @@ function App() {
     <Router>
       <Navbar />
       <Routes>
-        <Route path="/result" exact element={<SearchResult/>} />
+        <Route path="/results/:query" exact element={<SearchResult/>} />
         <Route path="/shoppingList" exact element={<ShoppingList/>}/>
         <Route path="/about" exact element={<About/>}/>
         <Route path="/" exact element={<Home/>}/>
