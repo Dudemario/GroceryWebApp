@@ -70,6 +70,7 @@ const SearchResult = () => {
             download: true,
             header: true,
             skipEmptyLines: true,
+            preview: 10,
             complete: function (result) {
               parsedData.push({ name: getName(csvFiles[i]), distance: getDist(csvFiles[i]), data: result.data, show: true });
               resolve();
