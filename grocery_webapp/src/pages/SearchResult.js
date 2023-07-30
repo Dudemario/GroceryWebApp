@@ -13,7 +13,7 @@ const getName = (filePath) => {
   let parts = filePath.split('/');
   parts = parts[3].split('.');
   parts = parts[0].split('~');
-  return parts[0];
+  return parts[0].charAt(0).toUpperCase() + parts[0].slice(1);
 };
 
 /* Parses the distance to the store from the csv file title. */
@@ -52,7 +52,7 @@ const SearchResult = () => {
     }
   }
 
-  // Waits for results folder to not be empty
+  /* Waits for results folder to not be empty */
   const waitForFiles = async () => {
     while(csvFiles.length === 0) {
       await new Promise((resolve) => setTimeout(resolve, 3000));
@@ -115,22 +115,29 @@ const SearchResult = () => {
       <img className='divide' src='https://i.ytimg.com/vi/XIMLoLxmTDw/hqdefault.jpg' alt='.'/>
       {sortedData.map((file, index) => (
         <div key={index}>
-          <h3>{file.name}, {file.distance}km away <button onClick={() => handleCollapse(index)}>{file.show ? "collapse" : "show"}</button></h3>
+          {file.data.length !== 0 ? (
+            <div className='title'><h3>{file.name}, {file.distance}km away </h3><button className='collapse' onClick={() => handleCollapse(index)}>{file.show ? "collapse" : "show"}</button></div>
+          ) : null}
           {file.show ? (
           <div className='items'>
             {file.data.map((item, idx) => (
-              <div key={idx}>
-                <a href={`//${item.url}`}><img src={item.img} alt={item.title} className='image' /></a>
+              <div className='product' key={idx}>
                 <div className='info'>
+                  <a href={`//${item.url}`}><img src={item.img} alt={item.title} className='image' /></a>
                   <div><b>{item.title}</b></div>
                   <div>{item.price}</div>
-                  <button className='addButton' onClick={() => addToList(item.title, item.price, file.name, 1, item.img)}>Add to List</button>
+                  <button className='addButton' onClick={() => addToList(item.title, item.price, file.name, file.distance, item.img)}>Add to List</button>
                 </div>
+                {idx !== file.data.length - 1 ? (
+                  <img className='divideV' src='https://i.ytimg.com/vi/XIMLoLxmTDw/hqdefault.jpg' alt='.'/>
+                ) : null}
               </div>
             ))}
           </div>
           ) : null}
-          <img className='divide' src='https://i.ytimg.com/vi/XIMLoLxmTDw/hqdefault.jpg' alt='.'/>
+          {file.data.length !== 0 ? (
+            <img className='divide' src='https://i.ytimg.com/vi/XIMLoLxmTDw/hqdefault.jpg' alt='.'/>
+          ) : null}
         </div>
       ))}
       {fileData.length === 0 ? <h2>{statusMsg}</h2> : null}

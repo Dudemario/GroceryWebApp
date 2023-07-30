@@ -28,7 +28,7 @@ function App() {
       <Router>
         <Navbar />
         <Routes>
-          <Route path="/result" element={<SearchResult />} />
+          <Route path="/results/:query" element={<SearchResult />} />
           <Route path="/shoppingList" element={<ShoppingList />} />
           <Route path="/about" element={<About />} />
           <Route path="/" element={<Home />} />
