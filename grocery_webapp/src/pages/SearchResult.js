@@ -121,7 +121,7 @@ const SearchResult = () => {
                   <div>{item.price}</div>
                   <button className='addButton' onClick={() => addToList(item.title, item.price, file.name, file.distance, item.img)}>Add to List</button>
                 </div>
-                {idx !== 9 ? (
+                {idx !== file.data.length - 1 ? (
                   <img className='divideV' src='https://i.ytimg.com/vi/XIMLoLxmTDw/hqdefault.jpg' alt='.'/>
                 ) : null}
               </div>
