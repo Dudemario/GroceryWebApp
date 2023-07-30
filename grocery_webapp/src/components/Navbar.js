@@ -6,7 +6,7 @@ import "../styles/Navbar.css";
 import SearchBar from "./SearchBar.js";
 import FoodData from "../Data.json"
 
-function Navbar ({currentPage}) {
+function Navbar () {
   const [openLinks, setOpenLinks] = useState(false);
 
   const toggleNavbar = () => {

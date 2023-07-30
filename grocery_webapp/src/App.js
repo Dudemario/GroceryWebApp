@@ -5,7 +5,7 @@ import Home from "./pages/Home";
 import ShoppingList from './pages/ShoppingList';
 import About from "./pages/About";
 import SearchResult from './pages/SearchResult';
-import { BrowserRouter as Router, Route, Routes, useLocation } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes} from "react-router-dom";
 
 
 function App() {
@@ -20,13 +20,9 @@ function App() {
 }
 
 function Main() {
-  // Use useLocation hook inside the Main component
-  const location = useLocation();
-  const currentPage = location.pathname;
-  
   return (
     <>
-      <Navbar currentPage={currentPage} />
+      <Navbar />
       <Routes>
         <Route path="/result" element={<SearchResult />} />
         <Route path="/shoppingList" element={<ShoppingList />} />
