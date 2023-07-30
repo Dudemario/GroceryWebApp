@@ -51,9 +51,18 @@ const SearchResult = () => {
     }
   }
 
+  // Waits for results folder to not be empty
+  const waitForFiles = async () => {
+    while(csvFiles.length === 0) {
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+    }
+  }
+
   /* Parses information from the csv files. */
   useEffect(() => {
     const fetchData = async () => {
+      await waitForFiles();
+      setStatusMsg("");
       const parsedData = [];
       for (let i = 0; i < csvFiles.length; i++) {
         await new Promise((resolve, reject) => {
@@ -75,12 +84,7 @@ const SearchResult = () => {
       setSortedData([...parsedData].sort((a,b) => a.distance - b.distance));
     };
 
-    console.log(query);
     fetchData();
-
-    setTimeout(() => {
-      setStatusMsg("There was an error fetching results");
-    }, 5000)
   }, []);
 
   const handleCollapse = (index) => {

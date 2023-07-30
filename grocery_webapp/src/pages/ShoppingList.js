@@ -11,10 +11,15 @@ function ShoppingList() {
   const [confirm, setConfirm] = useState(false); //whether to show remove confirmation
   const [removed, setRemoved] = useState([]); //array of removed items
 
-  /* Sets sort to default (alphabeical) on page load. */
+  /* Sets sort to default (alphabetical) on page load. */
   useEffect(() => {
     setSortList([...ShopList].sort((a, b) => a.name.localeCompare(b.name)));
   }, []);
+
+  /* Adds the list to localStorage when updated. */
+  useEffect(() => {
+    localStorage.setItem('shop_list', JSON.stringify(sortList));
+  }, [sortList])
 
   /* Re-sorts the list if an item is added back from removed. */
   useEffect(() => {
