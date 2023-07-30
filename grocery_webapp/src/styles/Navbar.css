@@ -16,6 +16,7 @@
   }
   
   .navbar .leftSide img {
+    display:flex;
     width: 150px;
   }
 
