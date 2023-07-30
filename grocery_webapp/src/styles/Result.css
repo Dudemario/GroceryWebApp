@@ -1,0 +1,48 @@
+.searchresult {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.options {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.optionText {
+    margin-right: 20px;
+}
+
+.items {
+    display: flex;
+    overflow-y: auto;
+    max-height: 400px;
+    margin-bottom: 30px;
+}
+
+.image {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    margin-right: 15px;
+    margin-left: 15px;
+}
+
+.info {
+    text-align: center;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    line-height: 140%;
+}
+
+.addButton {
+    margin-top: 6px;
+    margin-bottom: 6px;
+}
+
+.divide {
+    position: relative;
+    width: 98%;
+    height: 2px;
+    opacity: 50%;
+    margin-bottom: 10px;
+}

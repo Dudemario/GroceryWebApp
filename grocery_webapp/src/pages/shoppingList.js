@@ -1,11 +1,3 @@
-/* To Do:
- *  - make it not look so ugly!!!!! 
- *        if have time: 
- *  - maybe block out group checkbox if sorting by distance (because it wouldn't
- *      do anything unless planning on displaying items from many of the same store
- *      franchise at different locations)
-*/
-
 import React, { useEffect, useState } from 'react'
 import { ShopList } from '../ListItems'
 import "../styles/ShopList.css";
