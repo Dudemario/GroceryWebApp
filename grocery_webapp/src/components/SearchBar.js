@@ -70,6 +70,6 @@ Additionally, entered value is assigned to a variable in another file through fi
       )}
     </div>
   )
-}
+} 
 
 export default SearchBar
