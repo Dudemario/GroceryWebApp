@@ -16,7 +16,7 @@ function Navbar ({currentPage}) {
   return (
     <div className="navbar">
 
-    <div className="leftSide" id={openLinks ? "open" : "close"}>
+      <div className="leftSide" id={openLinks ? "open" : "close"}>
         <img src={logo} />
         <div className="hiddenLinks">
           <Link to="/"> Home </Link>
@@ -24,11 +24,13 @@ function Navbar ({currentPage}) {
           <Link to="/about"> About </Link>
         </div>
       </div>
-      {currentPage === '/' && (
+      
+      
       <div className="searchbar">
          <SearchBar placeholder="Search Products" data={FoodData}/>
       </div>
-      )}
+      
+
       <div className="rightSide"> 
         <Link to="/"> Home </Link>
         <Link to="/shoppingList"> Shopping List </Link>
