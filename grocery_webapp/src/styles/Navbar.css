@@ -8,23 +8,23 @@
   }
   
   .navbar .leftSide {
-    flex: 50%;
+    flex: 1; 
     height: 100%;
     display: flex;
     align-items: center;
-    padding-left: 150px;
+    margin-left: 5vw;
   }
   
   .navbar .leftSide img {
-    width: 150px;
-  }
+    width: 10vw;
+  } 
   
   .searchbar {
-    width: 100vw;
-    height: 100vh;
+    flex: 1;
+    height: 100%;
     display: flex;
     align-items: center;
-    flex-direction: column;
+    flex-direction: column; 
     font-family: "Nunito", sans-serif;
     padding-top: 20px;
     margin-left: -500px;
@@ -33,7 +33,7 @@
   }
 
   .navbar .rightSide {
-    flex: 50%;
+    flex: 1;
     height: 100%;
     display: flex;
     align-items: center;
