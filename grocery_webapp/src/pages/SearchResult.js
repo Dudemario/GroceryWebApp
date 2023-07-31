@@ -12,17 +12,16 @@ const csvFiles = fileContext.keys().map(fileContext);
 const getName = (filePath) => {
   let parts = filePath.split('/');
   parts = parts[3].split('.');
-  parts = parts[0].split('~');
   return parts[0].charAt(0).toUpperCase() + parts[0].slice(1);
 };
 
-/* Parses the distance to the store from the csv file title. */
-const getDist = (filePath) => {
-  let parts = filePath.split('/');
-  parts = parts[3].split('.');
-  parts = parts[0].split('~');
-  return parts[1];
-}
+// /* Parses the distance to the store from the csv file title. */
+// const getDist = (filePath) => {
+//   let parts = filePath.split('/');
+//   parts = parts[3].split('.');
+//   parts = parts[0].split('~');
+//   return parts[1];
+// }
 
 const SearchResult = () => {
   const [fileData, setFileData] = useState([]); //default file data
@@ -60,7 +59,8 @@ const SearchResult = () => {
   }
   /* Parses information from the csv files. */
   useEffect(() => {
-    console.log("REEEEE" + cookies.name);
+    let names = cookies.name;
+    console.log("ewfewaf" + names);
     const fetchData = async () => {
       await waitForFiles();
       console.log("start");
@@ -69,6 +69,13 @@ const SearchResult = () => {
       setStatusMsg("");
       const parsedData = [];
       for (let i = 0; i < csvFiles.length; i++) {
+        let far = (Math.random()*10).toFixed(2);
+        for(let j in Object.keys(names)){
+          console.log("yo" + Object.keys(names)[j] + getName(csvFiles[i]));
+          if(Object.keys(names)[j].includes(getName(csvFiles[i]))){
+            far = parseFloat(parseFloat(names[Object.keys(names)[j]]).toFixed(2));
+          }
+        }
         await new Promise((resolve, reject) => {
           Papa.parse(csvFiles[i], {
             download: true,
@@ -76,7 +83,8 @@ const SearchResult = () => {
             skipEmptyLines: true,
             preview: 10,
             complete: function (result) {
-              parsedData.push({ name: getName(csvFiles[i]), distance: getDist(csvFiles[i]), data: result.data, show: true });
+
+              parsedData.push({ name: getName(csvFiles[i]), distance: far, data: result.data, show: true });
               resolve();
             
             },
@@ -115,7 +123,7 @@ const SearchResult = () => {
       <img className='divide' src='https://i.ytimg.com/vi/XIMLoLxmTDw/hqdefault.jpg' alt='.'/>
       {sortedData.map((file, index) => (
         <div key={index}>
-          {file.data.length !== 0 ? (
+          {file.data.length > 2 ? (
             <div className='title'><h3>{file.name}, {file.distance}km away </h3><button className='collapse' onClick={() => handleCollapse(index)}>{file.show ? "collapse" : "show"}</button></div>
           ) : null}
           {file.show ? (
@@ -135,7 +143,7 @@ const SearchResult = () => {
             ))}
           </div>
           ) : null}
-          {file.data.length !== 0 ? (
+          {file.data.length > 2 ? (
             <img className='divide' src='https://i.ytimg.com/vi/XIMLoLxmTDw/hqdefault.jpg' alt='.'/>
           ) : null}
         </div>
