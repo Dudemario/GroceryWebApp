@@ -1,9 +1,6 @@
 
-<div>
-  <h3 style = "text-align: center;
-                font-size: 40px;">
-    Welcome to Optimal Shopper</h3>
-</div>
+<h3 style="text-align:center;
+            font-size:50px;">Welcome to Optimal Shopper</h3>
 
 <h1 align="center">Where Savings Meet Convenience</h1>
 
