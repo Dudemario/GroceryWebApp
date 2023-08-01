@@ -174,6 +174,7 @@ function ShoppingList() {
       const updated = [...removed];
       updated.splice(removed.length-1);
       setRemoved(updated);
+      setConfirm(false);
     }
   }
 
@@ -198,15 +199,19 @@ function ShoppingList() {
       <div className='header'>
         <h1>Your Shopping List:</h1>
         {confirm ? <p className='confirm'>Item Removed Successfully</p> : <p></p>}
-        <button className='undo' value="undo" onClick={undoRemove}>Undo Remove</button>
+        {removed.length !== 0 ? (
+          <button className='undo' value="undo" onClick={undoRemove}>Undo Remove</button>
+        ) : null}
       </div>
       {sortList.map((item, index) => (
         <div key={index} className='item'>
-          <img className='divideTop' src='https://i.ytimg.com/vi/XIMLoLxmTDw/hqdefault.jpg' alt='.'/>
+          {index === 0 ? (
+            <img className='divideTop' src='https://i.ytimg.com/vi/XIMLoLxmTDw/hqdefault.jpg' alt='.'/>
+          ) : null}
           <img src={item.img} alt={item.name} className='itemImage'/>
           <div className='itemInfo'>
             <h3>{item.name}</h3>
-            <p>Store: {item.store}, Price: ${item.price}, Distance: {item.distance}km away</p>
+            <p>Store: {item.store}, Price: ${item.price.toFixed(2)}, Distance: {item.distance}km away</p>
           </div>
           <div className='remove'>
             <button className='rButton' onClick={() => handleRemove(index)}><img className='removeX' src='https://cdn-icons-png.flaticon.com/512/109/109602.png' alt='remove from list'/></button>

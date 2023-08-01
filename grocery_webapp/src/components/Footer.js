@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import InstagramIcon from '@mui/icons-material/Instagram';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import FacebookIcon from '@mui/icons-material/Facebook';
@@ -22,7 +23,13 @@ function Footer() {
             <LinkedInIcon />
           </a>
         </div>
-       <p> OptimalShopper.com</p>
+       <p> If you have any questions:&nbsp;  
+        <a href = "mailto:benjaminwang4242@gmail.com" target="_blank">
+          <button className="button">
+             Email us here
+          </button>
+        </a>
+      </p>
       </div>
     );
   }
