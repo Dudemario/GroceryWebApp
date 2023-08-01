@@ -55,7 +55,7 @@
 .remove {
     margin-left: auto;
     margin-right: 50px;
-    margin-top: 10px;
+    margin-top: 15px;
     text-align: center;
 }
 
@@ -109,6 +109,11 @@
     font-weight: bold;
 }
 
+.cButton:hover {
+    cursor: pointer;
+    background-color: rgb(219, 100, 100)
+}
+
 .confirm2 {
     margin-left: auto;
     margin-right: 40px;
@@ -124,4 +129,9 @@
     border-color: red;
     background-color: lightcoral;
     font-weight: bold;
+}
+
+.coButton:hover {
+    cursor: pointer;
+    background-color: rgb(219, 100, 100)
 }

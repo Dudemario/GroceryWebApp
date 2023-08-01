@@ -1,5 +1,5 @@
 import React from 'react'
-import background from "../assets/aboutUsBackground2.png";
+import background from "../assets/aboutUsBackground3.png";
 import "../styles/About.css";
 
 function About() {
