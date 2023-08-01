@@ -1,4 +1,4 @@
-<h1 style = "text-align:center;" >
+<h1 align:center>
      Welcome to Optimal Shopper
 </h1>
  
