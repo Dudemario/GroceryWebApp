@@ -1,5 +1,5 @@
 
-<h2 align="center">Welcome to Optimal Shopper</h2>
+<h3 align="center">Welcome to Optimal Shopper</h3>
 
 ## Where Savings Meet Convenience
 
