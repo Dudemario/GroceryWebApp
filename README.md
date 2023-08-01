@@ -38,7 +38,7 @@ _Below is an example of how you can instruct your audience on installing and set
    ```sh
    npm install
    ```
-3. For the back-end, in cluster.js change line numbers 38, 77, and 130 to your own file directories in order to store the separate shop .csv 
+3. For the back-end, in cluster.js change line numbers 38, 77, and 130 to your own file directories in order to store the separate shop .csv files
 
 ### Usage
 Main page:
@@ -58,6 +58,10 @@ Shopping list:
 
 ## Contact
 
-Benjamin Wang - benjaminwang4242@gmail.com
+Benjamin Wang - benjaminwang42@gmail.com
+Vincent Sun - vincentjsun@gmail.com
+Justin Li - justinli2013@gmail.com
+Danny Zhang - dannyzhang235@gmail.com
+Emma Gui - gui.emma1984@gmail.com
 
 Project Link: [https://github.com/Dudemario/GroceryWebApp](https://github.com/Dudemario/GroceryWebApp)
