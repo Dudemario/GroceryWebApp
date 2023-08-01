@@ -1,9 +1,11 @@
 <h1 style = "text-align:center;">
 Welcome to Optimal Shopper
 </h1>
+
+<h3 align="center">Where Savings Meet Convenience</h3>
  
 <div align="center">
-    <img src="./grocery_webapp/src/assets/Logo.png">
+    <img src="./grocery_webapp/src/assets/WhiteLogo.png">
 </div>
 
 </br>
@@ -32,7 +34,7 @@ _Below is an example of how you can instruct your audience on installing and set
 
 1. Clone the repo
    ```sh
-   git clone https://github.com/your_username_/Project-Name.git
+   git clone https://https://github.com/Dudemario/GroceryWebApp.git
    ```
 2. Install NPM packages
    ```sh
