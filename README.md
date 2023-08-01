@@ -1,8 +1,5 @@
 
-<h3 style="text-align:center;
-            font-size:100px;">Welcome to Optimal Shopper</h3>
-
-<h1 align="center">Where Savings Meet Convenience</h1>
+<h1>Welcome to Optimal Shopper</h1>
 
 <div align="center">
     <img src="./grocery_webapp/src/assets/WhiteLogo.png">
