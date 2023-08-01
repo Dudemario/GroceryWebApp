@@ -58,7 +58,7 @@ Shopping list:
 
 ## Contact
 
-Benjamin Wang - benjaminwang42@gmail.com
+Benjamin Wang - benjaminwang4242@gmail.com
 
 Vincent Sun - vincentjsun@gmail.com
 
