@@ -1,5 +1,5 @@
 
-<div styles = "text-align: center;
+<div style = "text-align: center;
                 font-size: 40px;">
     Welcome to Optimal Shopper
 </div>
