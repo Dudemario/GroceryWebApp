@@ -48,12 +48,12 @@ Main page:
 </br>
 Search results after a search:
 <div align="center">
-    <img src="./grocery_webapp/src/assets/WebsitePage2.PNG">
+    <img src="./grocery_webapp/src/assets/WebsitePage2.png">
 </div>
 </br>
 Shopping list:
 <div align="center">
-    <img src="./grocery_webapp/src/assets/WebsitePage3.PNG">
+    <img src="./grocery_webapp/src/assets/WebsitePage3.png">
 </div>
 
 ## Contact
