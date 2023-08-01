@@ -1,6 +1,6 @@
 
-<h1 align="center">Welcome to Optimal Shopper</h1>
-<h1 align="center">Where Savings Meet Convenience</h1>
+<h2 align="center">Welcome to Optimal Shopper</h2>
+## Where Savings Meet Convenience
 
 <div align="center">
     <img src="./grocery_webapp/src/assets/WhiteLogo.png">
