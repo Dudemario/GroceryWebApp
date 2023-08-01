@@ -1,5 +1,5 @@
 
-<h1>Welcome to Optimal Shopper</h1>
+<h1 align="center">Welcome to Optimal Shopper</h1>
 
 <div align="center">
     <img src="./grocery_webapp/src/assets/WhiteLogo.png">
