@@ -52,8 +52,6 @@ async function scrape(object) {
       headless: true,
       defaultViewport: false,
       userDataDir: "./tmp",
-      //executablePath: "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
-      //userDataDir: "/Users/vincent/Library/Application Support/Google/Chrome/Profile 2"
     }
   });
   cluster.on("taskerror", (err, data) => {
