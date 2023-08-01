@@ -1,12 +1,15 @@
-<h1 style = "text-align:center;" >
+<h1 style = "text-align:center;">
 Welcome to Optimal Shopper
 </h1>
+
+<h3>Where Savings Meet Convenience</h3>
  
 <div align="center">
-    <img src="./grocery_webapp/src/assets/Logo.png">
+    <img src="./grocery_webapp/src/assets/WhiteLogo.png">
 </div>
 
 </br>
+
 ## About the Project
 As a group of incoming imcompetent freshman, we realized that we would inevitably be faced with the daunting task of shopping for ourselves. To assist ourselves in this process, we created a web app that enables the user to search for a product and receive results of local grocery stores with the ability to filter by price.Users then have the ability to add products to a shopping list that displays the total cost. There is also the ability to group by store on the shopping list page if desired. 
 
@@ -47,12 +50,12 @@ Main page:
 </br>
 Search results after a search:
 <div align="center">
-    <img src="./grocery_webapp/src/assets/WebsitePage2.PNG">
+    <img src="./grocery_webapp/src/assets/WebsitePage2.png">
 </div>
 </br>
 Shopping list:
 <div align="center">
-    <img src="./grocery_webapp/src/assets/WebsitePage3.PNG">
+    <img src="./grocery_webapp/src/assets/WebsitePage3.png">
 </div>
 
 ## Contact
