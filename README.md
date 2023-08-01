@@ -59,9 +59,13 @@ Shopping list:
 ## Contact
 
 Benjamin Wang - benjaminwang42@gmail.com
+
 Vincent Sun - vincentjsun@gmail.com
+
 Justin Li - justinli2013@gmail.com
+
 Danny Zhang - dannyzhang235@gmail.com
+
 Emma Gui - gui.emma1984@gmail.com
 
 Project Link: [https://github.com/Dudemario/GroceryWebApp](https://github.com/Dudemario/GroceryWebApp)
