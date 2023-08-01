@@ -1,7 +1,8 @@
 
-<div style = "text-align: center;
+<div>
+  <h3 style = "text-align: center;
                 font-size: 40px;">
-    Welcome to Optimal Shopper
+    Welcome to Optimal Shopper</h3>
 </div>
 
 <h1 align="center">Where Savings Meet Convenience</h1>
