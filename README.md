@@ -8,7 +8,7 @@
 </br>
 
 ## About the Project
-As a group of incoming freshman, we realized that we would inevitably be faced with the daunting task of shopping for ourselves. To assist ourselves in this process, we created a web app that enables the user to search for a product and receive results of local grocery stores with the ability to filter by price.Users then have the ability to add products to a shopping list that displays the total cost. There is also the ability to group by store on the shopping list page if desired. 
+As a group of incoming freshman, we realized that we would inevitably be faced with the daunting task of shopping for ourselves. To assist ourselves in this process, we created a web app that enables the user to search for a product and receive results of local grocery stores with the ability to filter by price. Users then have the ability to add products to a shopping list that displays the total cost. There is also the ability to group by store on the shopping list page if desired. 
 
 ### Built With
 
