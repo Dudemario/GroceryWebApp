@@ -31,7 +31,7 @@ _Below is an example of how you can instruct your audience on installing and set
 
 1. Clone the repo
    ```sh
-   git clone https://https://github.com/Dudemario/GroceryWebApp.git
+   git clone https://github.com/vincentjsun/OptimalShopper.git
    ```
 2. Install NPM packages
    ```sh
@@ -67,4 +67,4 @@ Danny Zhang - dannyzhang235@gmail.com
 
 Emma Gui - gui.emma1984@gmail.com
 
-Project Link: [https://github.com/Dudemario/GroceryWebApp](https://github.com/Dudemario/GroceryWebApp)
+Project Link: [https://github.com/vincentjsun/OptimalShopper](https://github.com/vincentjsun/OptimalShopper)
